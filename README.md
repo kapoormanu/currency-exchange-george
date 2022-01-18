@@ -1,3 +1,30 @@
+# George Currency FX App
+
+This is an app created using CRA that lists exchange rates for major currencies, which can be filtered as per user search term.
+
+## Basic Specifications
+- [ ] The page has 
+    - [ ] 1. A header and 
+    - [ ] 2. A search bar at the top.
+- [ ] When the user is scrolling the page, the header scrolls off the page, but the search bar sticks to the top and stays there.
+- [ ] Below the header and the search bar appears a list of all currencies.
+- [ ] Each currency list item contains:    
+    1. Flag of the country
+    1. Name of the country
+    1. Currency of the country
+    1. Exchange rate of that currency
+
+- [ ] The currencies are searchable. The list updates according to the search results.
+- [ ] The search term is also present in the URL hash, enabling deep linking to be used later.
+
+## Enhanced Specifications
+- [ ] The App shows a loader while results are loading.
+- [ ] If no currencies are available or there were errors while fetching, show appropriate messages.
+- [ ] The app uses Redux to manage data.
+
+---
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
