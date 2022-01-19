@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './SearchBar.module.css';
 
 function SearchBar() {
     const [searchField, setSearchField] = React.useState('');
@@ -9,13 +10,14 @@ function SearchBar() {
     };
 
     return (
-        <div className='SearchBar' data-testid='Search-Bar'>
+        <div className={styles.searchBar}>
             <label htmlFor='searchField'>Search:</label>
             <input
                 type='search'
                 name='searchField'
                 id='searchField'
                 value={searchField}
+                placeholder='Enter symbol(eg EUR)'
                 onChange={handleSearchFieldChange}
             />
         </div>

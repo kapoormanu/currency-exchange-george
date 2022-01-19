@@ -1,9 +1,10 @@
 import React from 'react';
+import styles from './Header.module.css';
 
 function Header() {
     return (
-        <header className='Header'>
-            <h1 className='Header__Title'>George FE Test</h1>
+        <header className={styles.header}>
+            <h1 className={styles.headerTitle}>George FE Test</h1>
         </header>
     );
 }
