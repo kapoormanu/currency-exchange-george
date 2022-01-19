@@ -7,14 +7,18 @@ This is an app created using CRA that lists exchange rates for major currencies,
     - [ ] 1. A header and 
     - [ ] 2. A search bar at the top.
 - [ ] When the user is scrolling the page, the header scrolls off the page, but the search bar sticks to the top and stays there.
+- [x] The page has:
+    - [x] 1. A header and 
+    - [x] 2. A search bar at the top.
 - [ ] Below the header and the search bar appears a list of all currencies.
+- [ ] When the user is scrolling the page, the header scrolls off the page, but the search bar sticks to the top and stays there.
 - [ ] Each currency list item contains:    
     1. Flag of the country
     1. Name of the country
     1. Currency of the country
     1. Exchange rate of that currency
 
-- [ ] The currencies are searchable. The list updates according to the search results.
+- [ ] The currencies are searchable. The list updates according to the value in search bar.
 - [ ] The search term is also present in the URL hash, enabling deep linking to be used later.
 
 ## Enhanced Specifications
