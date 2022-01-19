@@ -3,10 +3,6 @@
 This is an app created using CRA that lists exchange rates for major currencies, which can be filtered as per user search term.
 
 ## Basic Specifications
-- [ ] The page has 
-    - [ ] 1. A header and 
-    - [ ] 2. A search bar at the top.
-- [ ] When the user is scrolling the page, the header scrolls off the page, but the search bar sticks to the top and stays there.
 - [x] The page has:
     - [x] 1. A header and 
     - [x] 2. A search bar at the top.
@@ -25,6 +21,20 @@ This is an app created using CRA that lists exchange rates for major currencies,
 - [ ] The App shows a loader while results are loading.
 - [ ] If no currencies are available or there were errors while fetching, show appropriate messages.
 - [ ] The app uses Redux to manage data.
+
+## Commit Message Format
+
+`<Type>: <Area of change/File>: Commit message`
+
+### Possible values for Type:
+* Feat: adding new feature to code
+* Fix: fix existing implementation
+* Test: Adding tests
+* Refactor
+* Style: Changes to styling only
+* Chore: Setup/changes in tooling; changes to non-functional files(e.g. readme)
+
+e.g. "Fix: SearchBox_Test: include name to be specific for search button"
 
 ---
 ---
