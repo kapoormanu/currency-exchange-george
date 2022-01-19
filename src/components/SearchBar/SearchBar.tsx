@@ -15,7 +15,7 @@ function SearchBar(props: SearchBarProps) {
 
     return (
         <div className={styles.searchBar}>
-            <label htmlFor='searchField'>Search:</label>
+            <label htmlFor='searchField'>Search</label>
             <input
                 type='search'
                 name='searchField'
