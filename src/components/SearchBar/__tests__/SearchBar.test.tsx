@@ -4,21 +4,30 @@ import userEvent from '@testing-library/user-event';
 
 import SearchBar from '../SearchBar';
 
+function setupSearchBar() {
+    const utils = render(<SearchBar />);
+    const searchBox = screen.getByRole('searchbox');
+    return {
+        ...utils,
+        searchBox
+    };
+}
+
 describe('<SearchBar />', () => {
     it('has a search box', () => {
-        render(<SearchBar />);
-        expect(screen.getByRole('searchbox')).toBeInTheDocument();
+        const { searchBox } = setupSearchBar();
+        expect(searchBox).toBeInTheDocument();
     });
 
     it('has no text in the search box on initialization', () => {
-        render(<SearchBar />);
-        expect(screen.getByRole('searchbox')).toHaveValue('');
+        const { searchBox } = setupSearchBar();
+        expect(searchBox).toHaveValue('');
     });
 
     it('populates search box when text typed by the user', () => {
-        render(<SearchBar />);
-        const searchBox = screen.getByRole('searchbox');
+        const { searchBox } = setupSearchBar();
+        expect(searchBox).toHaveValue('');
         userEvent.type(searchBox, 'test');
-        expect(screen.getByRole('searchbox')).toHaveValue('test');
+        expect(searchBox).toHaveValue('test');
     });
 });
