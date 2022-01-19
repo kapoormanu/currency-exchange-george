@@ -2,10 +2,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import SearchBar from '../SearchBar';
+import SearchBar, { SearchBarProps } from '../SearchBar';
 
-function setupSearchBar() {
-    const utils = render(<SearchBar />);
+function setupSearchBar(props: SearchBarProps = {}) {
+    const utils = render(<SearchBar {...props} />);
     const searchBox = screen.getByRole('searchbox');
     return {
         ...utils,
@@ -29,5 +29,13 @@ describe('<SearchBar />', () => {
         expect(searchBox).toHaveValue('');
         userEvent.type(searchBox, 'test');
         expect(searchBox).toHaveValue('test');
+    });
+
+    it('populates search box with value supplied in props', () => {
+        const testProps = {
+            searchTerm: 'USD'
+        };
+        const { searchBox } = setupSearchBar(testProps);
+        expect(searchBox).toHaveValue(testProps.searchTerm);
     });
 });

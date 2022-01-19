@@ -1,8 +1,12 @@
 import React from 'react';
 import styles from './SearchBar.module.css';
 
-function SearchBar() {
-    const [searchField, setSearchField] = React.useState('');
+export type SearchBarProps = {
+    searchTerm?: string;
+};
+
+function SearchBar(props: SearchBarProps) {
+    const [searchField, setSearchField] = React.useState(props.searchTerm || '');
 
     const handleSearchFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
