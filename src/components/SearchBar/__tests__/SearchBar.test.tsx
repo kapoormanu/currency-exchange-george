@@ -6,7 +6,7 @@ import SearchBar, { SearchBarProps } from '../SearchBar';
 
 function setupSearchBar(props: SearchBarProps = {}) {
     const utils = render(<SearchBar {...props} />);
-    const searchBox = screen.getByRole('searchbox', { name: /search/i });
+    const searchBox = screen.getByRole('searchbox', { name: 'Search' });
     return {
         ...utils,
         searchBox
@@ -14,12 +14,7 @@ function setupSearchBar(props: SearchBarProps = {}) {
 }
 
 describe('<SearchBar />', () => {
-    it('has a search box', () => {
-        const { searchBox } = setupSearchBar();
-        expect(searchBox).toBeInTheDocument();
-    });
-
-    it('has no text in the search box on initialization', () => {
+    it('has a search box with no text on initialization', () => {
         const { searchBox } = setupSearchBar();
         expect(searchBox).toHaveValue('');
     });
