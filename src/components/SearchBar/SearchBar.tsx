@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { Trans } from 'react-i18next';
+
 import styles from './SearchBar.module.css';
 
 export type SearchBarProps = {
@@ -15,7 +18,9 @@ export type SearchBarProps = {
  * @returns {JSX.Element} a JSX element composing the SearchBar
  */
 function SearchBar(props: SearchBarProps) {
-    const [searchField, setSearchField] = React.useState(props.searchTerm || '');
+    const [searchField, setSearchField] = useState(props.searchTerm || '');
+    /* eslint-disable-next-line testing-library/render-result-naming-convention */
+    const placeholderText = ReactDOMServer.renderToString(<Trans>search.placeholder</Trans>);
 
     /**
      * Function invoked on searchbox input change. Updates the state value.
@@ -32,13 +37,15 @@ function SearchBar(props: SearchBarProps) {
 
     return (
         <div className={styles.searchBar}>
-            <label htmlFor='searchField'>Search</label>
+            <label htmlFor='searchField'>
+                <Trans>search.label</Trans>
+            </label>
             <input
                 type='search'
                 name='searchField'
                 id='searchField'
                 value={searchField}
-                placeholder='Enter symbol(eg EUR)'
+                placeholder={placeholderText}
                 onChange={handleSearchFieldChange}
             />
         </div>
