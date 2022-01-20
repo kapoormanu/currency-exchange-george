@@ -21,6 +21,7 @@ This is an app created using CRA that lists exchange rates for major currencies,
 - [ ] The App shows a loader while results are loading.
 - [ ] If no currencies are available or there were errors while fetching, show appropriate messages.
 - [ ] The app uses Redux to manage data.
+- [ ] Internationalization support.
 
 ## Commit Message Format
 
