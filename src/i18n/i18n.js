@@ -5,5 +5,6 @@ import i18nConfig from './i18n.config';
 
 i18n.use(LanguageDetector).use(initReactI18next).init({
     resources: i18nConfig,
-    fallbackLng: 'en'
+    fallbackLng: 'en',
+    nonExplicitSupportedLngs: true
 });

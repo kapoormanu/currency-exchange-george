@@ -5,10 +5,7 @@ const i18nConfig = {
     en: {
         translation: I18N_EN
     },
-    'de-AT': {
-        translation: I18N_DE
-    },
-    'de-DE': {
+    de: {
         translation: I18N_DE
     }
 };
