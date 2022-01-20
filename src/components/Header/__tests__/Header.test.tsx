@@ -6,6 +6,6 @@ import Header from '../Header';
 describe('<Header/ >', () => {
     it('should have the header text', () => {
         render(<Header />);
-        expect(screen.getByRole('heading')).toHaveTextContent(/George FE Test/i);
+        expect(screen.getByRole('heading')).toHaveTextContent('header.title');
     });
 });
