@@ -1,4 +1,6 @@
 import React from 'react';
+import { Trans } from 'react-i18next';
+
 import styles from './Header.module.css';
 
 /**
@@ -11,7 +13,9 @@ import styles from './Header.module.css';
 function Header() {
     return (
         <header className={styles.header}>
-            <h1 className={styles.headerTitle}>George FE Test</h1>
+            <h1 className={styles.headerTitle}>
+                <Trans>header.title</Trans>
+            </h1>
         </header>
     );
 }

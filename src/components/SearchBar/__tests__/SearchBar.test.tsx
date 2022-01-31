@@ -6,7 +6,7 @@ import SearchBar, { SearchBarProps } from '../SearchBar';
 
 function setupSearchBar(props: SearchBarProps = {}) {
     const utils = render(<SearchBar {...props} />);
-    const searchBox = screen.getByRole('searchbox', { name: 'Search' });
+    const searchBox = screen.getByRole('searchbox', { name: 'search.label' });
     return {
         ...utils,
         searchBox
