@@ -2,10 +2,17 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { Provider } from 'react-redux';
+import { store } from '../../../app/store';
+
 import SearchBar, { SearchBarProps } from '../SearchBar';
 
 function setupSearchBar(props: SearchBarProps = {}) {
-    const utils = render(<SearchBar {...props} />);
+    const utils = render(
+        <Provider store={store}>
+            <SearchBar {...props} />
+        </Provider>
+    );
     const searchBox = screen.getByRole('searchbox', { name: 'search.label' });
     return {
         ...utils,
@@ -17,6 +24,11 @@ describe('<SearchBar />', () => {
     it('has a search box with no text on initialization', () => {
         const { searchBox } = setupSearchBar();
         expect(searchBox).toHaveValue('');
+    });
+
+    it('has a search box with placeholder', () => {
+        setupSearchBar();
+        expect(screen.getByPlaceholderText('search.placeholder')).toBeInTheDocument();
     });
 
     it('populates search box when text typed by the user', () => {

@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import ReactDOMServer from 'react-dom/server';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { searchActions } from './searchSlice';
+
 import { Trans } from 'react-i18next';
 
 import styles from './SearchBar.module.css';
@@ -18,7 +22,15 @@ export type SearchBarProps = {
  * @returns {JSX.Element} a JSX element composing the SearchBar
  */
 function SearchBar(props: SearchBarProps) {
-    const [searchField, setSearchField] = useState(props.searchTerm || '');
+    const dispatch = useAppDispatch();
+    const { searchField } = useAppSelector((state) => state.search);
+
+    useEffect(() => {
+        if (props.searchTerm) {
+            dispatch(searchActions.setSearch(props.searchTerm));
+        }
+    }, [props.searchTerm, dispatch]);
+
     /* eslint-disable-next-line testing-library/render-result-naming-convention */
     const placeholderText = ReactDOMServer.renderToString(<Trans>search.placeholder</Trans>);
 
@@ -32,7 +44,7 @@ function SearchBar(props: SearchBarProps) {
      */
     const handleSearchFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
-        setSearchField(value);
+        dispatch(searchActions.setSearch(value));
     };
 
     return (
