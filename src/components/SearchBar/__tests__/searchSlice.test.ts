@@ -1,4 +1,4 @@
-import searchReducer, { searchActions } from '../searchSlice';
+import searchReducer, { searchActions } from 'components/SearchBar/searchSlice';
 
 describe('searchReducer', () => {
     it('should return state with set value', () => {
@@ -6,4 +6,3 @@ describe('searchReducer', () => {
         expect(searchField).toBe('test');
     });
 });
-

@@ -1,4 +1,4 @@
-import searchReducer from '../components/SearchBar/searchSlice';
+import searchReducer from 'components/SearchBar/searchSlice';
 
 const rootReducer = {
     search: searchReducer

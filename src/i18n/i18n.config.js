@@ -1,5 +1,5 @@
-import { I18N_EN } from './en/en.i18n';
-import { I18N_DE } from './de/de.i18n';
+import { I18N_EN } from 'i18n/en/en.i18n';
+import { I18N_DE } from 'i18n/de/de.i18n';
 
 const i18nConfig = {
     en: {

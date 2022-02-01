@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { searchActions } from './searchSlice';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { searchActions } from 'components/SearchBar/searchSlice';
 
 import { Trans } from 'react-i18next';
 
-import styles from './SearchBar.module.css';
+import styles from 'components/SearchBar/SearchBar.module.css';
 
 export type SearchBarProps = {
     searchTerm?: string;

@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Provider } from 'react-redux';
-import { store } from '../../../app/store';
+import { store } from 'app/store';
 
-import SearchBar, { SearchBarProps } from '../SearchBar';
+import SearchBar, { SearchBarProps } from 'components/SearchBar/SearchBar';
 
 function setupSearchBar(props: SearchBarProps = {}) {
     const utils = render(

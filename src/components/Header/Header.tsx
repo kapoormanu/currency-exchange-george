@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trans } from 'react-i18next';
 
-import styles from './Header.module.css';
+import styles from 'components/Header/Header.module.css';
 
 /**
  * The Header component used to show the website header using the <header> tag.
