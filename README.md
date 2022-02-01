@@ -2,6 +2,10 @@
 
 This is an app created using CRA that lists exchange rates for major currencies, which can be filtered as per user search term.
 
+## Setup
+
+Run `nvm use && npm i` to install the required dependencies. Make sure `nvm` is installed.
+If you don't want to use `nvm`, make sure that `node -v` returns a version greater than or equal to that present in the `.nvmrc` file. Then, run `npm i`;
 ## Basic Specifications
 - [x] The page has:
     - [x] 1. A header and 
@@ -22,17 +26,39 @@ This is an app created using CRA that lists exchange rates for major currencies,
 - [ ] If no currencies are available or there were errors while fetching, show appropriate messages.
 - [x] The app uses Redux to manage data.
 - [x] Internationalization support.
+## Directory Structure
+
+* `- app` :The app component and global state management files are located in the root `app/` folder since they are logicallly related.
+* Each component has a dedicated folder for the TSX, CSS and tests for it. I feel this allows easier referencing within files and also makes the components very easy to add/remove, doing so together for all the parts.
+    ```
+    - components
+        -- Component
+            -- Component.tsx
+            -- Component.module.css
+            -- tests
+                -- Component.test.tsx
+                -- otherTests.ts
+        -- Component
+            -- Component.tsx
+            -- Component.module.css
+            -- tests
+                -- Component.test.tsx
+                -- otherTests.ts
+    ```
+
+* `- i18n`: I18N files are stored under the i18n directory.
 
 ## Commit Message Format
 
 `<Type>: <Area of change/File>: Commit message`
 
 ### Possible values for Type:
-* Feat: adding new feature to code
-* Fix: fix existing implementation
+* Feat: Adding new feature to code
+* Fix: Fix existing implementation
 * Test: Adding tests
 * Refactor
-* Style: Changes to styling only
+* Style: Changes to code styling only (e.g. spaces, tabs, prettier changes)
+* Docs: Adding docs for anything
 * Chore: Setup/changes in tooling; changes to non-functional files(e.g. readme)
 
 e.g. "Fix: SearchBox_Test: include name to be specific for search button"
