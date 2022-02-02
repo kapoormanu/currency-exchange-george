@@ -36,9 +36,28 @@ const getFormattedExchangeRate = (exchangeRate: string, baseCurrency: string, mi
  */
 const getCountryFromCurrency = (currency: string) => currency.substring(0, 2).toLowerCase();
 
+/**
+ * @function getImgUrlForCountry
+ * Returns the image url for supplied country code or placeholder if not found.
+ *
+ * @param {string} country A 2-letter lower case representation corresponding to the country
+ * @returns {any} A 2-letter lower case representation corresponding to the country
+ */
+const getImgUrlForCountry = (country: string) => {
+    let imgUrl;
+    try {
+        imgUrl = require(`assets/flags/${country}.png`);
+    } catch (e) {
+        // if image can't be found, return placeholder
+        imgUrl = 'https://via.placeholder.com/70x47/83ddff/2f2f2f?text=No+Flag';
+    }
+    return imgUrl;
+};
+
 const utils = {
     getFormattedExchangeRate,
-    getCountryFromCurrency
+    getCountryFromCurrency,
+    getImgUrlForCountry
 };
 
 export default utils;
