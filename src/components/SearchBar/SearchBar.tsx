@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { searchActions } from 'components/SearchBar/searchSlice';
+import { searchSelector } from 'components/SearchBar/searchBarSelectors';
 
 import { Trans } from 'react-i18next';
 
@@ -23,7 +24,7 @@ export type SearchBarProps = {
  */
 function SearchBar(props: SearchBarProps) {
     const dispatch = useAppDispatch();
-    const { searchField } = useAppSelector((state) => state.search);
+    const { searchField } = useAppSelector(searchSelector);
 
     useEffect(() => {
         if (props.searchTerm) {
