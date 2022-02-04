@@ -45,12 +45,12 @@ describe('<CurrencyItem/>', () => {
         expect(screen.getByText(`${currencyData.nameI18N}`)).toBeInTheDocument();
     });
 
-    it('should show output the currency code', async () => {
+    it('should output the currency code', async () => {
         const { currencyData } = renderCompleteCurrencyItem();
         expect(screen.getByText(`${currencyData.currency}`)).toBeInTheDocument();
     });
 
-    it('should show output the country flag for currency', async () => {
+    it('should output the country flag for currency', async () => {
         const country = 'in';
         jest.spyOn(utils, 'getCountryFromCurrency').mockReturnValue(country);
         const { currencyData } = renderCompleteCurrencyItem();
@@ -60,7 +60,7 @@ describe('<CurrencyItem/>', () => {
         expect(countryFlagImage.src).toBe(`${location.origin}/${country}.png`);
     });
 
-    it("should show output the currency's exchange price in base currency", async () => {
+    it("should output the currency's exchange price in base currency", async () => {
         const { currencyData, baseCurrency } = renderCompleteCurrencyItem();
         expect(screen.getByText(`${currencyData.exchangeRate?.buy} ${baseCurrency}`)).toBeInTheDocument();
     });
