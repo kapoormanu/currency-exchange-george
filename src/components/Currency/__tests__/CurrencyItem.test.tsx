@@ -40,7 +40,7 @@ function renderSymbolOnlyCurrencyItem() {
 }
 
 describe('<CurrencyItem/>', () => {
-    it('should show output the currency name', async () => {
+    it('should output the currency name', async () => {
         const { currencyData } = renderCompleteCurrencyItem();
         expect(screen.getByText(`${currencyData.nameI18N}`)).toBeInTheDocument();
     });
