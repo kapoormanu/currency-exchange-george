@@ -1,8 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import { server } from 'mocks/mockServer';
-import { rest } from 'msw';
 import fxData from 'mocks/data/fx.json';
 
 import { store } from 'app/store';
@@ -33,18 +31,4 @@ describe('<CurrencyList/>', () => {
         // Assumption: no other images are rendered inside CurrencyList
         expect(screen.getAllByRole('img')).toHaveLength(fxData.fx.length);
     });
-
-    it('should show an error message if API call failed', async () => {
-        server.resetHandlers(
-            rest.get('https://run.mocky.io/v3/c88db14a-3128-4fbd-af74-1371c5bb0343', (req, resp, ctx) => {
-                return resp(ctx.status(400, 'Server Error'));
-            })
-        );
-        await renderCurrencyList();
-        // TODO: Improve this test
-        const alert = screen.getByRole('alert');
-        expect(alert).toBeInTheDocument();
-        expect(alert).toHaveTextContent('Oops. There was an Error fetching currencies.');
-    });
-
 });
