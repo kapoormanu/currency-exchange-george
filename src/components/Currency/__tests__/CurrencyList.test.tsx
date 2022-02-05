@@ -1,9 +1,6 @@
-import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
-import { rest } from 'msw';
-import { server } from 'mocks/mockServer';
 import fxData from 'mocks/data/fx.json';
 
 import { store } from 'app/store';
@@ -49,16 +46,4 @@ describe('<CurrencyList/>', () => {
         expect(alert).toHaveTextContent('Oops. There was an Error fetching currencies.');
     });
 
-    it('should show an appropriate message if API returns 0 currencies', async () => {
-        server.resetHandlers(
-            rest.get('https://run.mocky.io/v3/c88db14a-3128-4fbd-af74-1371c5bb0343', (req, resp, ctx) => {
-                return resp(ctx.json({ ...fxData, fx: [] }));
-            })
-        );
-        await renderCurrencyList();
-        // TODO: Improve this test
-        const alert = screen.getByRole('alert');
-        expect(alert).toBeInTheDocument();
-        expect(alert).toHaveTextContent('No currencies available.');
-    });
 });
