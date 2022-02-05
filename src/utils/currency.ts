@@ -54,10 +54,31 @@ const getImgUrlForCountry = (country: string) => {
     return imgUrl;
 };
 
+/**
+ * @function transformJSONToAllStrings
+ * Returns all members of the data stringified.
+ * This is necessary to prevent losing trailing zeroes received in JSON.
+ * Ideally, the API should return numbers as string.
+ *
+ * @param {Object} data Data to transform
+ * @returns {Object} data transformed to JSON with all keys and values as strings
+ * @example
+ *  { "obj1": [ {"n1": 1.1, "n2": true}, {"n1": 1, "n2": "null"} ] }
+    transforms to 
+    { "obj1": [ {"n1": "1.1", "n2": "true"}, {"n1": "1", "n2": "null"} ] }
+ */
+const transformJSONToAllStrings = (data: any) => {
+    const json = JSON.stringify(data);
+    const dataWithStrings = JSON.parse(json, (key, val) =>
+        typeof val !== 'object' && val !== null ? String(val) : val
+    );
+    return dataWithStrings;
+};
 const utils = {
     getFormattedExchangeRate,
     getCountryFromCurrency,
-    getImgUrlForCountry
+    getImgUrlForCountry,
+    transformJSONToAllStrings
 };
 
 export default utils;
