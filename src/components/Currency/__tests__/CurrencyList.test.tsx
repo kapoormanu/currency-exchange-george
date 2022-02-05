@@ -13,9 +13,8 @@ const renderCurrencyList = async () => {
         </Provider>
     );
     // Show loading currencies while fetching from API
-    expect(await screen.findByText('Loading Currencies...')).toBeInTheDocument();
     await waitFor(() => {
-        // and then hide it when loaded
+        // and then hide it when SUCCESS/api failure
         expect(screen.queryByText('Loading Currencies...')).not.toBeInTheDocument();
     });
     return utils;
@@ -23,7 +22,7 @@ const renderCurrencyList = async () => {
 describe('<CurrencyList/>', () => {
     it('should load all the countries from API', async () => {
         await renderCurrencyList();
-        expect(screen.getAllByRole('row')).toHaveLength(fxData.fx.length);
+        expect(screen.getAllByRole('row')).toHaveLength(fxData.fx.length + 1); // plus one for the header
     });
 
     it('should load flags for all countries including placeholders for missing flags', async () => {
