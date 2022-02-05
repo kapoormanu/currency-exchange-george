@@ -70,9 +70,10 @@ describe('<CurrencyItem/>', () => {
         expect(screen.getByText('N/A')).toBeInTheDocument();
     });
 
-    it('should have a placeholder rate for currencies without an exchange rate', () => {
+    it('should have a placeholder buy and sell rate for currencies without an exchange rate', () => {
         const { baseCurrency } = renderSymbolOnlyCurrencyItem();
-        expect(screen.getByText(`-- ${baseCurrency}`)).toBeInTheDocument();
+        const cellsWithExchangeRate = screen.getAllByRole('cell', { name: `-- ${baseCurrency}` });
+        expect(cellsWithExchangeRate).toHaveLength(2); // one for buy, one for sell
     });
 
     it('should have a placeholder flag for currencies without matching file', () => {

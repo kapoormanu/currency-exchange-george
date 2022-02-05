@@ -8,7 +8,7 @@ type CurrencyItemProps = {
 };
 
 /**
- * CurrencyItem Component. Outputs the following four items for a currency:
+ * CurrencyItem Component. Outputs the following five items as a table row for a currency:
  * * Flag of the country
  * * Currency of the country
  * * Name of the country
@@ -25,18 +25,28 @@ function CurrencyItem({ currencyData, baseCurrency }: CurrencyItemProps) {
     const imgUrl = utils.getImgUrlForCountry(country);
 
     return (
-        <>
-            <img src={imgUrl} alt={currencyData.nameI18N || country} />
-            <div>{currencyData?.currency}</div>
-            <div>{currencyData?.nameI18N || 'N/A'}</div>
-            <div>
+        <tr>
+            <td headers='flag'>
+                <img src={imgUrl} alt={currencyData.nameI18N || country} />
+            </td>
+
+            <td headers='currency'>{currencyData?.currency}</td>
+            <td headers='country'>{currencyData?.nameI18N || 'N/A'}</td>
+            <td headers='buy'>
                 {utils.getFormattedExchangeRate(
                     currencyData.exchangeRate?.buy || '',
                     baseCurrency,
                     currencyData.precision
                 )}
-            </div>
-        </>
+            </td>
+            <td headers='sell'>
+                {utils.getFormattedExchangeRate(
+                    currencyData.exchangeRate?.sell || '',
+                    baseCurrency,
+                    currencyData.precision
+                )}
+            </td>
+        </tr>
     );
 }
 
