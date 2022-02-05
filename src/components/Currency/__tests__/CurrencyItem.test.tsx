@@ -6,10 +6,19 @@ import fxData from 'mocks/data/fx.json';
 import utils from 'utils/currency';
 import { Currency } from 'types/currency';
 
-function renderCompleteCurrencyItem(customCurrencyCode?: string) {
+/**
+ * @function renderCompleteCurrencyItem
+ * @memberof CurrencyItem.test
+ *
+ * Renders the CurrencyItem component using a sample currency item.
+ * @param {string} currency Currency symbol
+ *
+ * @returns {Object} returns `utils` returned from render, `baseCurrency` and `currencyData` used
+ */
+function renderCompleteCurrencyItem() {
     const baseCurrency = 'EUR';
     const testCurrencyData: Currency = {
-        currency: customCurrencyCode || 'FJD',
+        currency: 'FJD',
         nameI18N: 'Fiji Dollar',
         exchangeRate: {
             buy: '2.0',
@@ -60,9 +69,18 @@ describe('<CurrencyItem/>', () => {
         expect(countryFlagImage.src).toBe(`${location.origin}/${country}.png`);
     });
 
-    it("should output the currency's exchange price in base currency", async () => {
-        const { currencyData, baseCurrency } = renderCompleteCurrencyItem();
-        expect(screen.getByText(`${currencyData.exchangeRate?.buy} ${baseCurrency}`)).toBeInTheDocument();
+    it("should output the currency's buy price in base currency correctly", async () => {
+        const { baseCurrency } = renderCompleteCurrencyItem();
+        // exchange rate is provided since this is calculated by a util function
+        // This test will fail only if the underlying utility function fails
+        expect(screen.getByText(`0.5 ${baseCurrency}`)).toBeInTheDocument();
+    });
+
+    it("should output the currency's sell price in base currency correctly", async () => {
+        const { baseCurrency } = renderCompleteCurrencyItem();
+        // exchange rate is provided since this is calculated by a util function
+        // This test will fail only if the underlying utility function fails
+        expect(screen.getByText(`0.4 ${baseCurrency}`)).toBeInTheDocument();
     });
 
     it('should have a placeholder name for currencies without a name', () => {

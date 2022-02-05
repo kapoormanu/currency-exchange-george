@@ -31,4 +31,24 @@ describe('<CurrencyList/>', () => {
         // Assumption: no other images are rendered inside CurrencyList
         expect(screen.getAllByRole('img')).toHaveLength(fxData.fx.length);
     });
+
+    it('should have a placeholder name for all currencies without a name', async () => {
+        await renderCurrencyList();
+        const currenciesWithoutName = fxData.fx.filter((currency) => !currency.nameI18N).length;
+        expect(screen.getAllByText('N/A').length).toBe(currenciesWithoutName);
+    });
+
+    it('should have a placeholder exchange rate for all empty buy and sell values', async () => {
+        await renderCurrencyList();
+        const totalEmptyValues = fxData.fx.reduce((total, currency) => {
+            if (!currency.exchangeRate?.buy) {
+                total++;
+            }
+            if (!currency.exchangeRate?.sell) {
+                total++;
+            }
+            return total;
+        }, 0);
+        expect(screen.getAllByText('-- EUR').length).toBe(totalEmptyValues);
+    });
 });
