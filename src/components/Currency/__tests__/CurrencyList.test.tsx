@@ -1,6 +1,8 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 
+import { server } from 'mocks/mockServer';
+import { rest } from 'msw';
 import fxData from 'mocks/data/fx.json';
 
 import { store } from 'app/store';
