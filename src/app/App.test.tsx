@@ -16,12 +16,14 @@ describe('<App />', () => {
     it('renders app', () => {
         setupApp();
     });
-    it('renders the Header successfully', () => {
+    it('renders the Header successfully', async () => {
         setupApp();
-        expect(screen.getByRole('heading')).toBeInTheDocument();
+        const heading = await screen.findByRole('heading');
+        expect(heading).toBeInTheDocument();
     });
-    it('renders the searchbar successfully', () => {
+    it('renders the searchbar successfully', async () => {
         setupApp();
-        expect(screen.getByRole('searchbox')).toBeInTheDocument();
+        const searchbox = await screen.findByRole('searchbox');
+        expect(searchbox).toBeInTheDocument();
     });
 });

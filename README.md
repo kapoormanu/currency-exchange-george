@@ -10,9 +10,9 @@ If you don't want to use `nvm`, make sure that `node -v` returns a version great
 - [x] The page has:
     - [x] 1. A header and 
     - [x] 2. A search bar at the top.
-- [ ] Below the header and the search bar appears a list of all currencies.
-- [ ] When the user is scrolling the page, the header scrolls off the page, but the search bar sticks to the top and stays there.
-- [ ] Each currency list item contains:    
+- [x] Below the header and the search bar appears a list of all currencies.
+- [x] When the user is scrolling the page, the header scrolls off the page, but the search bar sticks to the top and stays there.
+- [x] Each currency list item contains:    
     1. Flag of the country
     1. Name of the country
     1. Currency of the country
@@ -23,7 +23,7 @@ If you don't want to use `nvm`, make sure that `node -v` returns a version great
 
 ## Enhanced Specifications
 - [ ] The App shows a loader while results are loading.
-- [ ] If no currencies are available or there were errors while fetching, show appropriate messages.
+- [x] If no currencies are available or there were errors while fetching, show appropriate messages.
 - [x] The app uses Redux to manage data.
 - [x] Internationalization support.
 ## Directory Structure
