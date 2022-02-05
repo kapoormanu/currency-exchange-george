@@ -26,6 +26,7 @@ If you don't want to use `nvm`, make sure that `node -v` returns a version great
 - [x] If no currencies are available or there were errors while fetching, show appropriate messages.
 - [x] The app uses Redux to manage data.
 - [x] Internationalization support.
+- [ ] The implementation for CurrencyList should be swappable with choice (e.g. basic table, paginated table)
 ## Directory Structure
 
 * `- app` :The app component and global state management files are located in the root `app/` folder since they are logicallly related.
