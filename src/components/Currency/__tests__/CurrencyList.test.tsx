@@ -1,20 +1,25 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux';
+import { render, screen, waitFor } from 'test-utils/testUtils';
 
 import fxData from 'mocks/data/fx.json';
 
-import { store } from 'app/store';
 import CurrencyList from 'components/Currency/CurrencyList';
 
+/**
+ * @function renderCurrencyList
+ * @memberof CurrencyList.test
+ *
+ * Reusable helper function to render the component and optionally
+ * perform functions common to the tests using it.
+ * Renders the CurrencyList component and returns a promise to wait for
+ * currencies to be loaded.
+ * @param {string} currency Currency symbol
+ *
+ * @returns {Object} returns `utils` returned from render, `baseCurrency` and `currencyData` used
+ */
 const renderCurrencyList = async () => {
-    const utils = render(
-        <Provider store={store}>
-            <CurrencyList />
-        </Provider>
-    );
-    // Show loading currencies while fetching from API
+    const utils = render(<CurrencyList />);
     await waitFor(() => {
-        // and then hide it when SUCCESS/api failure
+        // hide message when SUCCESS/api failure
         expect(screen.queryByText('Loading Currencies...')).not.toBeInTheDocument();
     });
     return utils;

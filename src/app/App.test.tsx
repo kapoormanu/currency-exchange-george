@@ -1,16 +1,16 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
+import { render, screen } from 'test-utils/testUtils';
 
 import App from 'app/App';
-import { store } from 'app/store';
 
+/**
+ * @function setupApp
+ * @private
+ *
+ * Reusable helper function to render the component and optionally
+ * perform functions common to the tests using it
+ */
 function setupApp() {
-    render(
-        <Provider store={store}>
-            <App />
-        </Provider>
-    );
+    render(<App />);
 }
 describe('<App />', () => {
     it('renders app', () => {
