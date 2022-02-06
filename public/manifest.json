@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "FX Test App",
+  "name": "George Currency App Sample",
   "icons": [
     {
       "src": "favicon.ico",
