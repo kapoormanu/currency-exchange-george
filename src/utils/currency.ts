@@ -9,16 +9,49 @@
  *
  * @returns {string} A formatted string representing the exchange rate
  */
-const getFormattedExchangeRate = (exchangeRate: string, baseCurrency: string, minPrecision: number = 0) => {
+const getFormattedExchangeRate = (exchangeRate: string, baseCurrency: string, minPrecision: number = 0): string => {
+    /**
+     * @function formatExchangeRate
+     * Formats the exchange rate using appropriate number of decimals
+     * @private
+     *
+     * @param {number} rateInBaseCurrency The exchange rate
+     * @param {number} precision The minimum number of trailing decimals to show
+     *
+     * @returns {string} formatted exchange rate
+     */
+    const formatExchangeRate = (rateInBaseCurrency: number, precision: number) => {
+        if (rateInBaseCurrency >= 1) {
+            return `${rateInBaseCurrency.toFixed(precision)}`;
+        } else {
+            // Return decimal and following continuous zeroes. e.g. 1.0005 => .000
+            const decimalWithZeros = /\.[0]+/;
+
+            // Preserve as many decimals as possible
+            const rateString = rateInBaseCurrency.toFixed(20);
+
+            // Gets the length of data returned by regex. Safe checks as it could be empty string due to no match
+            const leadingZeroesInDecimalPart: number = ((rateString.match(decimalWithZeros) || '')[0] || []).length;
+
+            // Add leadingZeroesInDecimalPart if greater than 1 and Subtract one for the period:'.'
+            const precisionToUse =
+                leadingZeroesInDecimalPart > 1 ? leadingZeroesInDecimalPart + precision - 1 : precision;
+            return `${rateInBaseCurrency.toFixed(precisionToUse)}`;
+        }
+    };
+
     // get the part after decimal and return its length.
     const implicitPrecision = (exchangeRate.split('.')[1] || []).length;
+    const isExchangeRateInValid = !exchangeRate || isNaN(Number(exchangeRate)) || Number(exchangeRate) === 0;
 
     let formattedExchangeRate;
 
-    if (!exchangeRate || isNaN(Number(exchangeRate))) {
+    if (isExchangeRateInValid) {
         formattedExchangeRate = `-- ${baseCurrency}`;
     } else {
-        formattedExchangeRate = `${Number(exchangeRate).toFixed(
+        let rateInBaseCurrency = 1 / parseFloat(exchangeRate);
+        formattedExchangeRate = `${formatExchangeRate(
+            rateInBaseCurrency,
             Math.max(implicitPrecision, minPrecision)
         )} ${baseCurrency}`;
     }
@@ -54,10 +87,31 @@ const getImgUrlForCountry = (country: string) => {
     return imgUrl;
 };
 
+/**
+ * @function transformJSONToAllStrings
+ * Returns all members of the data stringified.
+ * This is necessary to prevent losing trailing zeroes received in JSON.
+ * Ideally, the API should return numbers as string.
+ *
+ * @param {Object} data Data to transform
+ * @returns {Object} data transformed to JSON with all keys and values as strings
+ * @example
+ *  { "obj1": [ {"n1": 1.1, "n2": true}, {"n1": 1, "n2": "null"} ] }
+    transforms to 
+    { "obj1": [ {"n1": "1.1", "n2": "true"}, {"n1": "1", "n2": "null"} ] }
+ */
+const transformJSONToAllStrings = (data: any) => {
+    const json = JSON.stringify(data);
+    const dataWithStrings = JSON.parse(json, (key, val) =>
+        typeof val !== 'object' && val !== null ? String(val) : val
+    );
+    return dataWithStrings;
+};
 const utils = {
     getFormattedExchangeRate,
     getCountryFromCurrency,
-    getImgUrlForCountry
+    getImgUrlForCountry,
+    transformJSONToAllStrings
 };
 
 export default utils;
