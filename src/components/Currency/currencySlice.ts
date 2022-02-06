@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { Currency } from 'types/currency';
@@ -8,13 +8,15 @@ import utils from 'utils/currency';
 // Describes the shape of the currency slice
 interface currencyState {
     currencies: Currency[];
+    filteredCurrencies: Currency[];
     baseCurrency: string;
     status: apiStatus;
 }
 
 //Provide initial state
-const initialState: currencyState = {
+export const currencyInitialState: currencyState = {
     currencies: [],
+    filteredCurrencies: [],
     baseCurrency: '',
     status: {
         state: apiState.PRISTINE,
@@ -30,8 +32,18 @@ export const fetchCurrencies = createAsyncThunk('currency/fetchCurrencies', asyn
 // Create the currency slice
 export const currencySlice = createSlice({
     name: 'currency',
-    initialState,
-    reducers: {},
+    initialState: currencyInitialState,
+    reducers: {
+        updateFilteredCurrencies(state: currencyState, action: PayloadAction<string>) {
+            if (action.payload) {
+                state.filteredCurrencies = state.currencies.filter((currency) =>
+                    utils.isSearchTermPresentInCurrency(currency, action.payload)
+                );
+            } else {
+                state.filteredCurrencies = state.currencies;
+            }
+        }
+    },
     extraReducers(builder) {
         builder
             .addCase(fetchCurrencies.pending, (state, action) => {
@@ -43,6 +55,7 @@ export const currencySlice = createSlice({
                 const { baseCurrency, fx } = utils.transformJSONToAllStrings(action.payload);
                 state.baseCurrency = baseCurrency;
                 state.currencies = fx;
+                state.filteredCurrencies = fx;
             })
             .addCase(fetchCurrencies.rejected, (state, action) => {
                 state.status.state = apiState.FAILURE;

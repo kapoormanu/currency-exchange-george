@@ -4,6 +4,8 @@ import { apiStatus } from 'types/global';
 
 export const getAllCurrencies = (state: RootState): Currency[] => state.currency.currencies;
 
+export const getFilteredCurrencies = (state: RootState): Currency[] => state.currency.filteredCurrencies;
+
 export const getBaseCurrency = (state: RootState): string => state.currency.baseCurrency;
 
 export const getLoadingStatus = (state: RootState): apiStatus => state.currency.status;

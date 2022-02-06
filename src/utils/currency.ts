@@ -1,3 +1,5 @@
+import { Currency } from 'types/currency';
+
 /**
  * @function getFormattedExchangeRate
  * Formats a given set of currency values to return a formatted exchange rate.
@@ -107,11 +109,27 @@ const transformJSONToAllStrings = (data: any) => {
     );
     return dataWithStrings;
 };
+
+/**
+ * @function isSearchTermPresentInCurrency
+ * Checks whether the given search term is present in the currency name(currency.nameI18N) or symbol (currency.currency)
+ *
+ * @param {Currency} currency Currency object to check in
+ * @param {string} searchTerm search term to find in currency
+ * @returns {Boolean} true if currency has searchTerm, false otherwise
+ */
+const isSearchTermPresentInCurrency = (currency: Currency, searchTerm: string) => {
+    const searchName = Number(currency.nameI18N?.search(new RegExp(searchTerm, 'i')));
+    const searchCurrencySymbol = Number(currency.currency.search(new RegExp(searchTerm, 'i')));
+    return (!isNaN(searchName) && searchName >= 0) || (!isNaN(searchCurrencySymbol) && searchCurrencySymbol >= 0);
+};
+
 const utils = {
     getFormattedExchangeRate,
     getCountryFromCurrency,
     getImgUrlForCountry,
-    transformJSONToAllStrings
+    transformJSONToAllStrings,
+    isSearchTermPresentInCurrency
 };
 
 export default utils;

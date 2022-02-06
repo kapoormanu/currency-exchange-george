@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import CurrencyItem from 'components/Currency/CurrencyItem';
 import { apiState } from 'types/global';
-import { fetchCurrencies } from 'components/Currency/currencySlice';
-import { getAllCurrencies, getBaseCurrency, getLoadingStatus } from 'components/Currency/currencySelector';
+
+import CurrencyItem from 'components/Currency/CurrencyItem';
+import { getBaseCurrency, getFilteredCurrencies, getLoadingStatus } from 'components/Currency/currencySelector';
+import { currencyActions, fetchCurrencies } from 'components/Currency/currencySlice';
+
+import { searchSelector } from 'components/SearchBar/searchBarSelectors';
 
 function CurrencyList() {
     const dispatch = useAppDispatch();
     const { state: loadingStatus } = useAppSelector(getLoadingStatus);
-    const currencies = useAppSelector(getAllCurrencies);
+    const { searchField } = useAppSelector(searchSelector);
+    const filteredCurrencies = useAppSelector(getFilteredCurrencies);
     const baseCurrency = useAppSelector(getBaseCurrency);
-    const currencyItems = currencies.length ? (
-        currencies.map((currency) => (
+    const currencyItems = filteredCurrencies.length ? (
+        filteredCurrencies.map((currency) => (
             // React gives a false warning about this line that this shouldn't be wrapped in a <div>
             <CurrencyItem key={currency.currency} baseCurrency={baseCurrency} currencyData={currency} />
         ))
@@ -25,6 +29,9 @@ function CurrencyList() {
         }
     }, [loadingStatus, dispatch]);
 
+    useEffect(() => {
+        dispatch(currencyActions.updateFilteredCurrencies(searchField));
+    }, [searchField, dispatch]);
     return (
         <>
             {loadingStatus === apiState.LOADING && <div>Loading Currencies...</div>}
@@ -33,8 +40,9 @@ function CurrencyList() {
                     Oops. There was an Error fetching currencies.
                 </div>
             )}
-            {loadingStatus === apiState.SUCCESS && currencies.length && (
+            {loadingStatus === apiState.SUCCESS && (
                 <table>
+                    <caption id='currency-list'>Currency List</caption>
                     <thead>
                         <tr>
                             <th id='flag'>Flag</th>
@@ -44,13 +52,15 @@ function CurrencyList() {
                             <th id='sell'>Sell</th>
                         </tr>
                     </thead>
-                    <tbody>{currencyItems}</tbody>
+                    <tbody>
+                        {filteredCurrencies.length > 0 && currencyItems}
+                        {filteredCurrencies.length === 0 && (
+                            <div role='alert' className='fade alert alert-danger show'>
+                                No currencies available.
+                            </div>
+                        )}
+                    </tbody>
                 </table>
-            )}
-            {loadingStatus === apiState.SUCCESS && !currencies.length && (
-                <div role='alert' className='fade alert alert-danger show'>
-                    No currencies available.
-                </div>
             )}
         </>
     );
