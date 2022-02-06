@@ -10,6 +10,8 @@ import { Currency } from 'types/currency';
  * @function renderCompleteCurrencyItem
  * @memberof CurrencyItem.test
  *
+ * Reusable helper function to render the component and optionally
+ * perform functions common to the tests using it.
  * Renders the CurrencyItem component using a sample currency item.
  * @param {string} currency Currency symbol
  *

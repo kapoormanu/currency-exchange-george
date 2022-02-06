@@ -31,6 +31,11 @@ If you don't want to use `nvm`, make sure that `node -v` returns a version great
 
 * `- app` :The app component and global state management files are located in the root `app/` folder since they are logicallly related.
 * Each component has a dedicated folder for the TSX, CSS and tests for it. I feel this allows easier referencing within files and also makes the components very easy to add/remove, doing so together for all the parts.
+
+> Opinion: I like to keep my types inside of the components for two reasons. 
+> 1. Global types should really be global and should be easy for anyone to grasp what those types are from reading the file. Adding all types to global would make it bloated.
+> 1. Having them in the components makes it easy to infer from the import signature about the nature of the types.
+> One option to explore is to have the types of each component in a related file to make it possible to replace implementations altogether and make adjustments based on the types.
     ```
     - components
         -- Component
