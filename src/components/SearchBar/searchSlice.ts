@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Describes the shape of the search slice
-interface SearchState {
+interface searchState {
     searchField: string;
 }
-const initialState: SearchState = {
+const initialState: searchState = {
     searchField: ''
 };
 
@@ -14,7 +14,7 @@ export const searchSlice = createSlice({
     initialState,
     reducers: {
         // action to set the search value
-        setSearch(state: SearchState, action: PayloadAction<string>) {
+        setSearch(state: searchState, action: PayloadAction<string>) {
             state.searchField = action.payload;
         }
     }

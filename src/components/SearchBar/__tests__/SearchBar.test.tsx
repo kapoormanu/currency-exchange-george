@@ -1,18 +1,21 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen } from 'test-utils/testUtils';
 import userEvent from '@testing-library/user-event';
-
-import { Provider } from 'react-redux';
-import { store } from 'app/store';
 
 import SearchBar, { SearchBarProps } from 'components/SearchBar/SearchBar';
 
+/**
+ * @function renderCompleteCurrencyItem
+ * @memberof SearchBar.test
+ *
+ * Reusable helper function to render the component and optionally
+ * perform functions common to the tests using it.
+ * Renders the SearchBar component and the element refering to the searchbox..
+ * @param {SearchBarProps} props props to send to the component
+ *
+ * @returns {Object} returns `utils` returned from render and a ref to the rendered searchbox.
+ */
 function setupSearchBar(props: SearchBarProps = {}) {
-    const utils = render(
-        <Provider store={store}>
-            <SearchBar {...props} />
-        </Provider>
-    );
+    const utils = render(<SearchBar {...props} />);
     const searchBox = screen.getByRole('searchbox', { name: 'search.label' });
     return {
         ...utils,
@@ -44,5 +47,13 @@ describe('<SearchBar />', () => {
         };
         const { searchBox } = setupSearchBar(testProps);
         expect(searchBox).toHaveValue(testProps.searchTerm);
+    });
+
+    xit('has same text as in the query param for search on initialization', () => {
+        // Todo
+    });
+
+    xit('updates the text in the query param for search when user types text', () => {
+        // Todo
     });
 });
