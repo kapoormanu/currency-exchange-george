@@ -25,6 +25,7 @@ const renderCurrencyList = async () => {
     });
     return utils;
 };
+
 describe('<CurrenciesList/>', () => {
     it('should load all the countries from API', async () => {
         await renderCurrencyList();
@@ -39,9 +40,12 @@ describe('<CurrenciesList/>', () => {
     });
 
     it('should have a placeholder name for all currencies without a name', async () => {
+        const CURRENCY_NOT_AVAILABLE_TEXT = 'N/A';
         await renderCurrencyList();
-        const currenciesWithoutName = fxData.fx.filter((currency) => !currency.nameI18N).length;
-        expect(screen.getAllByText('N/A').length).toBe(currenciesWithoutName);
+
+        const currenciesWithoutName = fxData.fx.filter((currency) => !currency.nameI18N);
+
+        expect(screen.getAllByText(CURRENCY_NOT_AVAILABLE_TEXT)).toHaveLength(currenciesWithoutName.length);
     });
 
     it('should have a placeholder exchange rate for all empty buy and sell values', async () => {
