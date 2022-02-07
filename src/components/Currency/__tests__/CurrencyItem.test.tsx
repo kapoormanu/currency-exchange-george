@@ -71,14 +71,14 @@ describe('<CurrencyItem/>', () => {
         expect(countryFlagImage.src).toBe(`${location.origin}/${country}.png`);
     });
 
-    it("should output the currency's buy price in base currency correctly", async () => {
+    it('should output the currencys buy price in base currency correctly', async () => {
         const { baseCurrency } = renderCompleteCurrencyItem();
         // exchange rate is provided since this is calculated by a util function
         // This test will fail only if the underlying utility function fails
         expect(screen.getByText(`0.5 ${baseCurrency}`)).toBeInTheDocument();
     });
 
-    it("should output the currency's sell price in base currency correctly", async () => {
+    it('should output the currencys sell price in base currency correctly', async () => {
         const { baseCurrency } = renderCompleteCurrencyItem();
         // exchange rate is provided since this is calculated by a util function
         // This test will fail only if the underlying utility function fails

@@ -11,7 +11,7 @@ import { Currency } from 'types/currency';
  *
  * @returns {string} A formatted string representing the exchange rate
  */
-const getFormattedExchangeRate = (exchangeRate: string, baseCurrency: string, minPrecision: number = 0): string => {
+const getFormattedExchangeRate = (exchangeRate: string, baseCurrency: string, minPrecision = 0) => {
     /**
      * @function formatExchangeRate
      * Formats the exchange rate using appropriate number of decimals
@@ -51,7 +51,7 @@ const getFormattedExchangeRate = (exchangeRate: string, baseCurrency: string, mi
     if (isExchangeRateInValid) {
         formattedExchangeRate = `-- ${baseCurrency}`;
     } else {
-        let rateInBaseCurrency = 1 / parseFloat(exchangeRate);
+        const rateInBaseCurrency = 1 / parseFloat(exchangeRate);
         formattedExchangeRate = `${formatExchangeRate(
             rateInBaseCurrency,
             Math.max(implicitPrecision, minPrecision)
@@ -102,7 +102,7 @@ const getImgUrlForCountry = (country: string) => {
     transforms to 
     { "obj1": [ {"n1": "1.1", "n2": "true"}, {"n1": "1", "n2": "null"} ] }
  */
-const transformJSONToAllStrings = (data: any) => {
+const transformJSONToAllStrings = (data: JSON) => {
     const json = JSON.stringify(data);
     const dataWithStrings = JSON.parse(json, (key, val) =>
         typeof val !== 'object' && val !== null ? String(val) : val
