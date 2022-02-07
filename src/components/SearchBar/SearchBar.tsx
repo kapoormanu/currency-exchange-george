@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { searchActions } from 'components/SearchBar/searchSlice';
-import { searchSelector } from 'components/SearchBar/searchBarSelectors';
+import { searchActions } from 'components/SearchBar/redux/searchSlice';
+import { searchSelector } from 'components/SearchBar/redux/searchBarSelectors';
 
 import { Trans } from 'react-i18next';
 
