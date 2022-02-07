@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { searchActions } from 'components/SearchBar/searchSlice';
-import { searchSelector } from 'components/SearchBar/searchBarSelectors';
-
 import { Trans } from 'react-i18next';
-
 import styles from 'components/SearchBar/SearchBar.module.css';
+import { useManageSearchBarData } from 'components/SearchBar/redux/useManageSearchBarData';
 
 export type SearchBarProps = {
     searchTerm?: string;
@@ -23,30 +19,9 @@ export type SearchBarProps = {
  * @returns {JSX.Element} a JSX element composing the SearchBar
  */
 function SearchBar(props: SearchBarProps) {
-    const dispatch = useAppDispatch();
-    const { searchField } = useAppSelector(searchSelector);
-
-    useEffect(() => {
-        if (props.searchTerm) {
-            dispatch(searchActions.setSearch(props.searchTerm));
-        }
-    }, [props.searchTerm, dispatch]);
-
     /* eslint-disable-next-line testing-library/render-result-naming-convention */
     const placeholderText = ReactDOMServer.renderToString(<Trans>search.placeholder</Trans>);
-
-    /**
-     * Function invoked on searchbox input change. Updates the state value.
-     *
-     * @function
-     * @private
-     * @param {React.ChangeEvent<HTMLInputElement>} e the event created on input change
-     * @returns {Void} nothing
-     */
-    const handleSearchFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target;
-        dispatch(searchActions.setSearch(value));
-    };
+    const { handleSearchFieldChange, searchField } = useManageSearchBarData(props);
 
     return (
         <div className={styles.searchBar}>
