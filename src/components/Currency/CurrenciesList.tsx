@@ -9,7 +9,7 @@ import { currencyActions, fetchCurrencies } from 'components/Currency/redux/curr
 
 import { searchSelector } from 'components/SearchBar/searchBarSelectors';
 
-function CurrencyList() {
+function CurrenciesList() {
     const dispatch = useAppDispatch();
     const { state: loadingStatus } = useAppSelector(getLoadingStatus);
     const { searchField } = useAppSelector(searchSelector);
@@ -66,4 +66,4 @@ function CurrencyList() {
     );
 }
 
-export default CurrencyList;
+export default CurrenciesList;
