@@ -7,14 +7,18 @@ import CurrenciesList from 'components/Currency/CurrenciesList';
 
 describe('<CurrenciesList/> with empty data', () => {
     it('should show an appropriate message if API returns 0 currencies', async () => {
+        const NO_CURRENCIES_AVAILABLE_TEXT = 'No currencies available.';
         server.use(currencyHandlerEmpty);
+
         render(<CurrenciesList />);
         await waitFor(() => {
-            expect(screen.queryByText('Loading Currencies...')).not.toBeInTheDocument();
+            const LOADING_CURRENCIES_TEXT = 'Loading Currencies...';
+            expect(screen.queryByText(LOADING_CURRENCIES_TEXT)).not.toBeInTheDocument();
         });
-        // TODO: Improve this test
+
         const alert = screen.getByRole('alert');
+
         expect(alert).toBeInTheDocument();
-        expect(alert).toHaveTextContent('No currencies available.');
+        expect(alert).toHaveTextContent(NO_CURRENCIES_AVAILABLE_TEXT);
     });
 });

@@ -7,14 +7,17 @@ import CurrenciesList from 'components/Currency/CurrenciesList';
 
 describe('<CurrenciesList/> with error in API', () => {
     it('should show an error message if API call failed', async () => {
+        const ERROR_MESSAGE = /Oops\. There was an Error fetching currencies\.*/;
         server.use(currencyHandlerException);
         render(<CurrenciesList />);
         await waitFor(() => {
-            expect(screen.queryByText('Loading Currencies...')).not.toBeInTheDocument();
+            const LOADING_CURRENCIES_TEXT = 'Loading Currencies...';
+            expect(screen.queryByText(LOADING_CURRENCIES_TEXT)).not.toBeInTheDocument();
         });
-        // TODO: Improve this test
+
         const alert = screen.getByRole('alert');
+
         expect(alert).toBeInTheDocument();
-        expect(alert).toHaveTextContent(/Oops\. There was an Error fetching currencies\.*/);
+        expect(alert).toHaveTextContent(ERROR_MESSAGE);
     });
 });
