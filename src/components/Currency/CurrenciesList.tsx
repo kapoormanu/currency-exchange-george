@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { apiState } from 'types/global';
 
 import CurrencyItem from 'components/Currency/CurrencyItem';
-import { getBaseCurrency, getFilteredCurrencies, getLoadingStatus } from 'components/Currency/redux/currencySelector';
+import { getBaseCurrency, getFilteredCurrencies, getLoadingStatus } from 'components/Currency/redux/currenciesDataSelector';
 import { currenciesActions, fetchCurrencies } from 'components/Currency/redux/currenciesDataSlice';
 
 import { searchSelector } from 'components/SearchBar/searchBarSelectors';
