@@ -8,7 +8,6 @@ import { Currency } from 'types/currency';
 
 /**
  * @function renderCompleteCurrencyItem
- * @memberof CurrencyItem.test
  *
  * Reusable helper function to render the component and optionally
  * perform functions common to the tests using it.
@@ -36,6 +35,17 @@ function renderCompleteCurrencyItem() {
     };
 }
 
+/**
+ * @function renderSymbolOnlyCurrencyItem
+ *
+ * Reusable helper function to render the component and optionally
+ * perform functions common to the tests using it.
+ * Renders the CurrencyItem component using a sample currency item
+ * with only the currency symbol but missing other key data.
+ * @param {string} currency Currency symbol
+ *
+ * @returns {Object} returns `utils` returned from render, `baseCurrency` and `currencyData` used
+ */
 function renderSymbolOnlyCurrencyItem() {
     const baseCurrency = 'EUR';
     const currencyData = fxData.fx.find(
