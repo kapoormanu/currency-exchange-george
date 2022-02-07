@@ -1,5 +1,4 @@
-import { render, screen, within } from 'test-utils/testUtils';
-import userEvent from '@testing-library/user-event';
+import { render, screen } from 'test-utils/testUtils';
 
 import App from 'app/App';
 
