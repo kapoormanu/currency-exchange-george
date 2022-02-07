@@ -102,7 +102,7 @@ const getImgUrlForCountry = (country: string) => {
     transforms to 
     { "obj1": [ {"n1": "1.1", "n2": "true"}, {"n1": "1", "n2": "null"} ] }
  */
-const transformJSONToAllStrings = (data: JSON) => {
+const transformJSONToAllStrings = (data: any) => {
     const json = JSON.stringify(data);
     const dataWithStrings = JSON.parse(json, (key, val) =>
         typeof val !== 'object' && val !== null ? String(val) : val
