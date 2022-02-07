@@ -13,35 +13,8 @@ import App from 'app/App';
 function setupApp() {
     render(<App />);
 }
-describe('<App />', () => {
-    it('renders app', () => {
-        setupApp();
-    });
 
-    it('renders the Header successfully', async () => {
-        setupApp();
-
-        const heading = await screen.findByRole('heading');
-
-        expect(heading).toBeInTheDocument();
-    });
-
-    it('renders the searchbar successfully', async () => {
-        setupApp();
-
-        const searchbox = await screen.findByRole('searchbox');
-
-        expect(searchbox).toBeInTheDocument();
-    });
-
-    it('renders the currencylist successfully', async () => {
-        setupApp();
-
-        const currencyList = await screen.findByRole('table', { name: 'Currency List' });
-
-        expect(currencyList).toBeInTheDocument();
-    });
-
+describe('CurrencyList filtering using SearchBar', () => {
     it('should show only results matching the search item', async () => {
         const searchTerm = 'me';
         setupApp();
@@ -50,10 +23,10 @@ describe('<App />', () => {
 
         // Type the searchterm to filter results
         userEvent.type(searchBox, searchTerm);
-        const unmatchedItem: HTMLElement | null = within(currencyList).queryByRole('cell', { name: 'FJD' });
-        const matchedItem: HTMLElement | null = within(currencyList).queryByRole('img', { name: 'Mexican Peso' });
 
         // Check that only expected items are present due to filter term
+        const matchedItem: HTMLElement | null = within(currencyList).queryByRole('img', { name: 'Mexican Peso' });
+        const unmatchedItem: HTMLElement | null = within(currencyList).queryByRole('cell', { name: 'FJD' });
         expect(unmatchedItem).not.toBeInTheDocument();
         expect(matchedItem).toBeInTheDocument();
     });
