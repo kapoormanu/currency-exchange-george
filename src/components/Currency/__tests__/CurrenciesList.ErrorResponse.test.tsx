@@ -3,12 +3,12 @@ import { render, screen, waitFor } from 'test-utils/testUtils';
 import { server } from 'mocks/mockServer';
 import { currencyHandlerException } from 'mocks/handlers';
 
-import CurrencyList from 'components/Currency/CurrencyList';
+import CurrenciesList from 'components/Currency/CurrenciesList';
 
-describe('<CurrencyList/> with error in API', () => {
+describe('<CurrenciesList/> with error in API', () => {
     it('should show an error message if API call failed', async () => {
         server.use(currencyHandlerException);
-        render(<CurrencyList />);
+        render(<CurrenciesList />);
         await waitFor(() => {
             expect(screen.queryByText('Loading Currencies...')).not.toBeInTheDocument();
         });

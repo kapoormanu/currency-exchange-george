@@ -4,12 +4,12 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { apiState } from 'types/global';
 
 import CurrencyItem from 'components/Currency/CurrencyItem';
-import { getBaseCurrency, getFilteredCurrencies, getLoadingStatus } from 'components/Currency/redux/currencySelector';
-import { currencyActions, fetchCurrencies } from 'components/Currency/redux/currencySlice';
+import { getBaseCurrency, getFilteredCurrencies, getLoadingStatus } from 'components/Currency/redux/currenciesDataSelector';
+import { currenciesActions, fetchCurrencies } from 'components/Currency/redux/currenciesDataSlice';
 
 import { searchSelector } from 'components/SearchBar/searchBarSelectors';
 
-function CurrencyList() {
+function CurrenciesList() {
     const dispatch = useAppDispatch();
     const { state: loadingStatus } = useAppSelector(getLoadingStatus);
     const { searchField } = useAppSelector(searchSelector);
@@ -30,7 +30,7 @@ function CurrencyList() {
     }, [loadingStatus, dispatch]);
 
     useEffect(() => {
-        dispatch(currencyActions.updateFilteredCurrencies(searchField));
+        dispatch(currenciesActions.updateFilteredCurrencies(searchField));
     }, [searchField, dispatch]);
     return (
         <>
@@ -66,4 +66,4 @@ function CurrencyList() {
     );
 }
 
-export default CurrencyList;
+export default CurrenciesList;

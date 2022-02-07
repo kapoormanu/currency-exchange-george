@@ -3,12 +3,12 @@ import { render, screen, waitFor } from 'test-utils/testUtils';
 import { server } from 'mocks/mockServer';
 import { currencyHandlerEmpty } from 'mocks/handlers';
 
-import CurrencyList from 'components/Currency/CurrencyList';
+import CurrenciesList from 'components/Currency/CurrenciesList';
 
-describe('<CurrencyList/> with empty data', () => {
+describe('<CurrenciesList/> with empty data', () => {
     it('should show an appropriate message if API returns 0 currencies', async () => {
         server.use(currencyHandlerEmpty);
-        render(<CurrencyList />);
+        render(<CurrenciesList />);
         await waitFor(() => {
             expect(screen.queryByText('Loading Currencies...')).not.toBeInTheDocument();
         });

@@ -2,29 +2,29 @@ import { render, screen, waitFor } from 'test-utils/testUtils';
 
 import fxData from 'mocks/data/fx.json';
 
-import CurrencyList from 'components/Currency/CurrencyList';
+import CurrenciesList from 'components/Currency/CurrenciesList';
 
 /**
  * @function renderCurrencyList
- * @memberof CurrencyList.test
+ * @memberof CurrenciesList.test
  *
  * Reusable helper function to render the component and optionally
  * perform functions common to the tests using it.
- * Renders the CurrencyList component and returns a promise to wait for
+ * Renders the CurrenciesList component and returns a promise to wait for
  * currencies to be loaded.
  * @param {string} currency Currency symbol
  *
  * @returns {Object} returns `utils` returned from render, `baseCurrency` and `currencyData` used
  */
 const renderCurrencyList = async () => {
-    const utils = render(<CurrencyList />);
+    const utils = render(<CurrenciesList />);
     await waitFor(() => {
         // hide message when SUCCESS/api failure
         expect(screen.queryByText('Loading Currencies...')).not.toBeInTheDocument();
     });
     return utils;
 };
-describe('<CurrencyList/>', () => {
+describe('<CurrenciesList/>', () => {
     it('should load all the countries from API', async () => {
         await renderCurrencyList();
         expect(screen.getAllByRole('row')).toHaveLength(fxData.fx.length + 1); // plus one for the header
@@ -33,7 +33,7 @@ describe('<CurrencyList/>', () => {
     it('should load flags for all countries including placeholders for missing flags', async () => {
         await renderCurrencyList();
 
-        // Assumption: no other images are rendered inside CurrencyList
+        // Assumption: no other images are rendered inside CurrenciesList
         expect(screen.getAllByRole('img')).toHaveLength(fxData.fx.length);
     });
 

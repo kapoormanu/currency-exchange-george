@@ -1,4 +1,4 @@
-import currencyReducer, { currencyActions, currencyInitialState } from 'components/Currency/redux/currencySlice';
+import currencyReducer, { currenciesActions, currenciesDataInitialState } from 'components/Currency/redux/currenciesDataSlice';
 import fxData from 'mocks/data/fx.json';
 import { Currency } from 'types/currency';
 import utils from 'utils/currency';
@@ -8,8 +8,8 @@ describe('currencyReducer', () => {
         const searchTerm = 'eu';
         const fxDataStringified = utils.transformJSONToAllStrings(fxData);
         const { filteredCurrencies } = currencyReducer(
-            { ...currencyInitialState, currencies: fxDataStringified.fx },
-            currencyActions.updateFilteredCurrencies(searchTerm)
+            { ...currenciesDataInitialState, currencies: fxDataStringified.fx },
+            currenciesActions.updateFilteredCurrencies(searchTerm)
         );
         const testFilteredCurrencies: Currency[] = fxDataStringified.fx.filter((currency: Currency) =>
             utils.isSearchTermPresentInCurrency(currency, searchTerm)

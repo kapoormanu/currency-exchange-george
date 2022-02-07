@@ -5,8 +5,8 @@ import { apiStatus, apiState } from 'types/global';
 import utils from 'utils/currency';
 import { getCurrenciesResponse } from 'http/currenciesApi';
 
-// Describes the shape of the currency slice
-interface currencyState {
+// Describes the shape of the currencies data slice
+interface currenciesDataState {
     currencies: Currency[];
     filteredCurrencies: Currency[];
     baseCurrency: string;
@@ -14,7 +14,7 @@ interface currencyState {
 }
 
 //Provide initial state
-export const currencyInitialState: currencyState = {
+export const currenciesDataInitialState: currenciesDataState = {
     currencies: [],
     filteredCurrencies: [],
     baseCurrency: '',
@@ -24,14 +24,14 @@ export const currencyInitialState: currencyState = {
     }
 };
 
-export const fetchCurrencies = createAsyncThunk('currency/fetchCurrencies', getCurrenciesResponse());
+export const fetchCurrencies = createAsyncThunk('currencies/fetchCurrencies', getCurrenciesResponse());
 
-// Create the currency slice
-export const currencySlice = createSlice({
-    name: 'currency',
-    initialState: currencyInitialState,
+// Create the currencies data slice
+export const currenciesDataSlice = createSlice({
+    name: 'currenciesData',
+    initialState: currenciesDataInitialState,
     reducers: {
-        updateFilteredCurrencies(state: currencyState, action: PayloadAction<string>) {
+        updateFilteredCurrencies(state: currenciesDataState, action: PayloadAction<string>) {
             if (action.payload) {
                 state.filteredCurrencies = state.currencies.filter((currency) =>
                     utils.isSearchTermPresentInCurrency(currency, action.payload)
@@ -61,6 +61,6 @@ export const currencySlice = createSlice({
     }
 });
 
-export const currencyActions = currencySlice.actions;
+export const currenciesActions = currenciesDataSlice.actions;
 
-export default currencySlice.reducer;
+export default currenciesDataSlice.reducer;
