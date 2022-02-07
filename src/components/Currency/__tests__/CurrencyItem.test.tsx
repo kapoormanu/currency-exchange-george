@@ -5,6 +5,7 @@ import { render, screen } from '@testing-library/react';
 import fxData from 'mocks/data/fx.json';
 import utils from 'utils/currency';
 import { Currency } from 'types/currency';
+import { NO_FLAG_PLACEHOLDER } from 'constants/urls';
 
 /**
  * @function renderCompleteCurrencyItem
@@ -84,28 +85,36 @@ describe('<CurrencyItem/>', () => {
     });
 
     it('should output the currencys buy price in base currency correctly', async () => {
+        const EXPECTED_EXCHANGE_RATE = '0.5';
         const { baseCurrency } = renderCompleteCurrencyItem();
         // exchange rate is provided since this is calculated by a util function
         // This test will fail only if the underlying utility function fails
-        expect(screen.getByText(`0.5 ${baseCurrency}`)).toBeInTheDocument();
+        expect(screen.getByText(`${EXPECTED_EXCHANGE_RATE} ${baseCurrency}`)).toBeInTheDocument();
     });
 
     it('should output the currencys sell price in base currency correctly', async () => {
+        const EXPECTED_EXCHANGE_RATE = '0.4';
+
         const { baseCurrency } = renderCompleteCurrencyItem();
 
         // exchange rate is provided since this is calculated by a util function
         // This test will fail only if the underlying utility function fails
-        expect(screen.getByText(`0.4 ${baseCurrency}`)).toBeInTheDocument();
+        expect(screen.getByText(`${EXPECTED_EXCHANGE_RATE} ${baseCurrency}`)).toBeInTheDocument();
     });
 
     it('should have a placeholder name for currencies without a name', () => {
+        const CURRENCY_NOT_AVAILABLE_TEXT = 'N/A';
+
         renderSymbolOnlyCurrencyItem();
-        expect(screen.getByText('N/A')).toBeInTheDocument();
+
+        expect(screen.getByText(CURRENCY_NOT_AVAILABLE_TEXT)).toBeInTheDocument();
     });
 
     it('should have a placeholder buy and sell rate for currencies without an exchange rate', () => {
         const { baseCurrency } = renderSymbolOnlyCurrencyItem();
-        const cellsWithExchangeRate = screen.getAllByRole('cell', { name: `-- ${baseCurrency}` });
+        const PLACEHOLDER_EXCHANGE_RATE = `-- ${baseCurrency}`;
+
+        const cellsWithExchangeRate = screen.getAllByRole('cell', { name: PLACEHOLDER_EXCHANGE_RATE });
 
         expect(cellsWithExchangeRate).toHaveLength(2); // one for buy, one for sell
     });
@@ -118,6 +127,6 @@ describe('<CurrencyItem/>', () => {
         const countryFlagImage: HTMLImageElement = screen.getByRole('img', { name: `${currencyData.nameI18N}` });
 
         expect(countryFlagImage).toBeInTheDocument();
-        expect(countryFlagImage.src).toBe('https://via.placeholder.com/70x47/83ddff/2f2f2f?text=No+Flag');
+        expect(countryFlagImage.src).toBe(NO_FLAG_PLACEHOLDER);
     });
 });
