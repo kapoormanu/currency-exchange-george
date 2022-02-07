@@ -19,8 +19,9 @@ import CurrenciesList from 'components/Currency/CurrenciesList';
 const renderCurrencyList = async () => {
     const utils = render(<CurrenciesList />);
     await waitFor(() => {
+        const LOADING_CURRENCIES_TEXT = 'Loading Currencies...';
         // hide message when SUCCESS/api failure
-        expect(screen.queryByText('Loading Currencies...')).not.toBeInTheDocument();
+        expect(screen.queryByText(LOADING_CURRENCIES_TEXT)).not.toBeInTheDocument();
     });
     return utils;
 };
@@ -54,6 +55,7 @@ describe('<CurrenciesList/>', () => {
             }
             return total;
         }, 0);
-        expect(screen.getAllByText('-- EUR').length).toBe(totalEmptyValues);
+        const PLACEHOLDER_EXCHANGE_RATE = '-- EUR';
+        expect(screen.getAllByText(PLACEHOLDER_EXCHANGE_RATE).length).toBe(totalEmptyValues);
     });
 });
