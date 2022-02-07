@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { SearchBarProps } from 'components/SearchBar/SearchBar';
 
 // Redux related imports.
-import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/redux/hooks';
 import { searchSelector } from 'components/SearchBar/redux/searchBarSelectors';
 import { searchActions } from './searchSlice';
 
