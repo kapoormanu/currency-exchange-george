@@ -24,6 +24,10 @@ If you don't want to use `nvm`, make sure that `node -v` returns a version great
 -   [x] The currencies are searchable. The list updates according to the value in search bar.
 -   [ ] The search term is also present in the URL hash, enabling deep linking to be used later.
 
+## API Library
+
+Currently, axios is being used. However, it can be replaced by any Rest client.
+
 ## Enhanced Specifications
 
 -   [ ] The App shows a loader while results are loading.
