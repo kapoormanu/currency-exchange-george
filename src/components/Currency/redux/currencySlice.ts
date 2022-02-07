@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import { Currency } from 'types/currency';
 import { apiStatus, apiState } from 'types/global';
 import utils from 'utils/currency';
+import { getCurrenciesResponse } from 'http/currenciesApi';
 
 // Describes the shape of the currency slice
 interface currencyState {
@@ -24,10 +24,7 @@ export const currencyInitialState: currencyState = {
     }
 };
 
-export const fetchCurrencies = createAsyncThunk('currency/fetchCurrencies', async () => {
-    const { data } = await axios.get('https://run.mocky.io/v3/c88db14a-3128-4fbd-af74-1371c5bb0343');
-    return data;
-});
+export const fetchCurrencies = createAsyncThunk('currency/fetchCurrencies', getCurrenciesResponse());
 
 // Create the currency slice
 export const currencySlice = createSlice({
