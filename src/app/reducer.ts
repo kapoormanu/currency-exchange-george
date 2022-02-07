@@ -5,7 +5,7 @@ import currencyReducer from 'components/Currency/redux/currencySlice';
 // as RTK does this automatically
 const rootReducer = {
     search: searchReducer,
-    currency: currencyReducer
+    currencyData: currencyReducer
 };
 
 export default rootReducer;
