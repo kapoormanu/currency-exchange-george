@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Currency } from 'types/currency';
 import { apiStatus, apiState } from 'types/global';
 import utils from 'utils/currency';
-import { getCurrenciesResponse } from 'http/currenciesApi';
+import { currencyService } from 'http/apiServices';
 
 const SLICE_NAME = 'currenciesData';
 const FETCH_CURRENCIES_THUNK_NAME = `${SLICE_NAME}/fetchCurrencies`;
@@ -27,8 +27,7 @@ export const currenciesDataInitialState: currenciesDataState = {
     }
 };
 
-export const fetchCurrencies = createAsyncThunk(FETCH_CURRENCIES_THUNK_NAME, getCurrenciesResponse());
-
+export const fetchCurrencies = createAsyncThunk(FETCH_CURRENCIES_THUNK_NAME, currencyService.getCurrenciesData);
 // Create the currencies data slice
 export const currenciesDataSlice = createSlice({
     name: 'currenciesData',
