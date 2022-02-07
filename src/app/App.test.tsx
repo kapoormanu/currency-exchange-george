@@ -36,16 +36,15 @@ describe('<App />', () => {
 
     it('should show only results matching the search item', async () => {
         const searchTerm = 'me';
-        let unmatchedItem: HTMLElement | null;
-        let matchedItem: HTMLElement | null;
+
         setupApp();
         const currencyList = await screen.findByRole('table', { name: 'Currency List' });
         const searchBox = screen.getByRole('searchbox');
         expect(searchBox).toHaveValue('');
         userEvent.type(searchBox, searchTerm);
-        unmatchedItem = within(currencyList).queryByRole('cell', { name: 'FJD' });
+        const unmatchedItem: HTMLElement | null = within(currencyList).queryByRole('cell', { name: 'FJD' });
         expect(unmatchedItem).not.toBeInTheDocument();
-        matchedItem = within(currencyList).queryByRole('img', { name: 'Mexican Peso' });
+        const matchedItem: HTMLElement | null = within(currencyList).queryByRole('img', { name: 'Mexican Peso' });
         expect(matchedItem).toBeInTheDocument();
     });
 
