@@ -61,6 +61,6 @@ export const currenciesDataSlice = createSlice({
     }
 });
 
-export const currencyActions = currenciesDataSlice.actions;
+export const currenciesActions = currenciesDataSlice.actions;
 
 export default currenciesDataSlice.reducer;

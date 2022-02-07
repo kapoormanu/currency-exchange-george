@@ -5,7 +5,7 @@ import { apiState } from 'types/global';
 
 import CurrencyItem from 'components/Currency/CurrencyItem';
 import { getBaseCurrency, getFilteredCurrencies, getLoadingStatus } from 'components/Currency/redux/currencySelector';
-import { currencyActions, fetchCurrencies } from 'components/Currency/redux/currencySlice';
+import { currenciesActions, fetchCurrencies } from 'components/Currency/redux/currencySlice';
 
 import { searchSelector } from 'components/SearchBar/searchBarSelectors';
 
@@ -30,7 +30,7 @@ function CurrenciesList() {
     }, [loadingStatus, dispatch]);
 
     useEffect(() => {
-        dispatch(currencyActions.updateFilteredCurrencies(searchField));
+        dispatch(currenciesActions.updateFilteredCurrencies(searchField));
     }, [searchField, dispatch]);
     return (
         <>
