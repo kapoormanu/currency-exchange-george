@@ -31,10 +31,9 @@ describe('<SearchBar />', () => {
     });
 
     it('has a search box with placeholder', () => {
-        const searchWithPlaceholder = screen.getByPlaceholderText('search.placeholder');
-
         setupSearchBar();
 
+        const searchWithPlaceholder = screen.getByPlaceholderText('search.placeholder');
         expect(searchWithPlaceholder).toBeInTheDocument();
     });
 
@@ -50,8 +49,8 @@ describe('<SearchBar />', () => {
         const testProps = {
             searchTerm: 'USD'
         };
-        const { searchBox } = setupSearchBar(testProps);
 
+        const { searchBox } = setupSearchBar(testProps);
         expect(searchBox).toHaveValue(testProps.searchTerm);
     });
 
