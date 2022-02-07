@@ -5,7 +5,7 @@ import { apiStatus, apiState } from 'types/global';
 import utils from 'utils/currency';
 import { getCurrenciesResponse } from 'http/currenciesApi';
 
-// Describes the shape of the currency slice
+// Describes the shape of the currencies data slice
 interface currenciesDataState {
     currencies: Currency[];
     filteredCurrencies: Currency[];
@@ -28,7 +28,7 @@ export const fetchCurrencies = createAsyncThunk('currencies/fetchCurrencies', ge
 
 // Create the currencies data slice
 export const currenciesDataSlice = createSlice({
-    name: 'currencyData',
+    name: 'currenciesData',
     initialState: currenciesDataInitialState,
     reducers: {
         updateFilteredCurrencies(state: currenciesDataState, action: PayloadAction<string>) {
