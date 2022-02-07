@@ -2,30 +2,31 @@ import { server } from 'mocks/mockServer';
 import { currencyHandlerEmpty, currencyHandlerException } from 'mocks/handlers';
 import fxData from 'mocks/data/fx.json';
 
-import { CurrencyService } from 'http/services/GetCurrencyService';
+import { CurrencyService } from 'http/services/CurrencyService';
 import { AxiosHttpClient } from 'http/clients/AxiosHttpClient';
 import { currenciesResponseData } from 'http/currenciesResponse';
 
-let getCurrencies: ReturnType<typeof CurrencyService>;
+let currencyService: ReturnType<typeof CurrencyService>;
 
 beforeEach(() => {
     // Inject with client of choice, preferably same as used elsewhere in the app.
-    getCurrencies = CurrencyService(AxiosHttpClient());
+    currencyService = CurrencyService(AxiosHttpClient());
 });
 
 describe('currenciesApi', () => {
     it('should return fx data when API runs successfully', async () => {
-        const response = await getCurrencies();
+        const response = await currencyService.getCurrenciesData();
 
         expect(response.fx).toEqual(fxData.fx);
     });
+
     it('should return failure when API returns 500 status', async () => {
         server.use(currencyHandlerException);
         const Error500 = new Error('Request failed with status code 500');
 
         let response;
         try {
-            response = await getCurrencies();
+            response = await currencyService.getCurrenciesData();
         } catch (err) {
             response = err;
         }
@@ -35,7 +36,7 @@ describe('currenciesApi', () => {
     it('should return empty fx array when API response doesnt have data', async () => {
         server.use(currencyHandlerEmpty);
 
-        const response: currenciesResponseData = await getCurrencies();
+        const response: currenciesResponseData = await currencyService.getCurrenciesData();
 
         expect(response.fx).toEqual([]);
     });
