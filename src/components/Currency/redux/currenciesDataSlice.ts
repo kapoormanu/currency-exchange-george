@@ -3,7 +3,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Currency } from 'types/currency';
 import { apiStatus, apiState } from 'types/global';
 import utils from 'utils/currency';
-import { getCurrenciesResponse } from 'http/currenciesApi';
+import { CurrencyService } from 'http/services/GetCurrencyService';
+import { AxiosHttpClient } from 'http/clients/AxiosHttpClient';
 
 // Describes the shape of the currencies data slice
 interface currenciesDataState {
@@ -24,7 +25,7 @@ export const currenciesDataInitialState: currenciesDataState = {
     }
 };
 
-export const fetchCurrencies = createAsyncThunk('currencies/fetchCurrencies', getCurrenciesResponse());
+export const fetchCurrencies = createAsyncThunk('currencies/fetchCurrencies', CurrencyService(AxiosHttpClient()));
 
 // Create the currencies data slice
 export const currenciesDataSlice = createSlice({
