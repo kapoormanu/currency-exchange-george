@@ -1,3 +1,4 @@
+import { NO_FLAG_PLACEHOLDER } from 'constants/urls';
 import { Currency } from 'types/currency';
 
 /**
@@ -84,7 +85,7 @@ const getImgUrlForCountry = (country: string) => {
         imgUrl = require(`assets/flags/${country}.png`);
     } catch (e) {
         // if image can't be found, return placeholder
-        imgUrl = 'https://via.placeholder.com/70x47/83ddff/2f2f2f?text=No+Flag';
+        imgUrl = NO_FLAG_PLACEHOLDER;
     }
     return imgUrl;
 };
@@ -102,6 +103,7 @@ const getImgUrlForCountry = (country: string) => {
     transforms to 
     { "obj1": [ {"n1": "1.1", "n2": "true"}, {"n1": "1", "n2": "null"} ] }
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const transformJSONToAllStrings = (data: any) => {
     const json = JSON.stringify(data);
     const dataWithStrings = JSON.parse(json, (key, val) =>
