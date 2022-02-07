@@ -1,0 +1,59 @@
+{
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.autoSave": "onWindowChange",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.idea": true
+    },
+    "editor.fontLigatures": true,
+    "javascript.updateImportsOnFileMove.enabled": "prompt",
+    "eslint.alwaysShowStatus": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveTimeout": 2000,
+    "emmet.includeLanguages": {
+        "javascript": ["javascriptreact", "html", "javascript"]
+    },
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.syntaxProfiles": {
+        "javascript": "jsx"
+    },
+    "prettier.printWidth": 120,
+    // Enable/disable default JavaScript formatter.
+    "javascript.format.enable": false,
+    "jshint.config": "",
+    "prettier.jsxSingleQuote": true,
+    "prettier.singleQuote": true,
+    "prettier.jsxBracketSameLine": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.tabWidth": 4,
+    "jshint.options": {
+        "esversion": 6
+    },
+    "prettier.trailingComma": "none",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.documentSelectors": ["**/*.{tsx,jsx,ts,js,css}"],
+    "window.zoomLevel": 1,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.enable": true
+}
