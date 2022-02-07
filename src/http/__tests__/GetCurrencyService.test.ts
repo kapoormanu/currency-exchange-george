@@ -2,15 +2,15 @@ import { server } from 'mocks/mockServer';
 import { currencyHandlerEmpty, currencyHandlerException } from 'mocks/handlers';
 import fxData from 'mocks/data/fx.json';
 
-import { CurrencyService } from 'http/services/CurrencyService';
+import { HttpCurrencyService } from 'http/services/HttpCurrencyService';
 import { AxiosHttpClient } from 'http/clients/AxiosHttpClient';
 import { currenciesResponseData } from 'http/currenciesResponse';
 
-let currencyService: ReturnType<typeof CurrencyService>;
+let currencyService: ReturnType<typeof HttpCurrencyService>;
 
 beforeEach(() => {
     // Inject with client of choice, preferably same as used elsewhere in the app.
-    currencyService = CurrencyService(AxiosHttpClient());
+    currencyService = HttpCurrencyService(AxiosHttpClient());
 });
 
 describe('currenciesApi', () => {
