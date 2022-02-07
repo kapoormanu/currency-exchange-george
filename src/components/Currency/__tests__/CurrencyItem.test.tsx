@@ -75,8 +75,10 @@ describe('<CurrencyItem/>', () => {
         const country = 'in';
         jest.spyOn(utils, 'getCountryFromCurrency').mockReturnValue(country);
         const { currencyData } = renderCompleteCurrencyItem();
+
         const countryFlagImage: HTMLImageElement = screen.getByRole('img', { name: `${currencyData.nameI18N}` });
         expect(countryFlagImage).toBeInTheDocument();
+
         // eslint-disable-next-line no-restricted-globals
         expect(countryFlagImage.src).toBe(`${location.origin}/${country}.png`);
     });
@@ -90,6 +92,7 @@ describe('<CurrencyItem/>', () => {
 
     it('should output the currencys sell price in base currency correctly', async () => {
         const { baseCurrency } = renderCompleteCurrencyItem();
+
         // exchange rate is provided since this is calculated by a util function
         // This test will fail only if the underlying utility function fails
         expect(screen.getByText(`0.4 ${baseCurrency}`)).toBeInTheDocument();
@@ -103,14 +106,17 @@ describe('<CurrencyItem/>', () => {
     it('should have a placeholder buy and sell rate for currencies without an exchange rate', () => {
         const { baseCurrency } = renderSymbolOnlyCurrencyItem();
         const cellsWithExchangeRate = screen.getAllByRole('cell', { name: `-- ${baseCurrency}` });
+
         expect(cellsWithExchangeRate).toHaveLength(2); // one for buy, one for sell
     });
 
     it('should have a placeholder flag for currencies without matching file', () => {
         const country = 'zz';
         jest.spyOn(utils, 'getCountryFromCurrency').mockReturnValue(country);
+
         const { currencyData } = renderCompleteCurrencyItem();
         const countryFlagImage: HTMLImageElement = screen.getByRole('img', { name: `${currencyData.nameI18N}` });
+
         expect(countryFlagImage).toBeInTheDocument();
         expect(countryFlagImage.src).toBe('https://via.placeholder.com/70x47/83ddff/2f2f2f?text=No+Flag');
     });
