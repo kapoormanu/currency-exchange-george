@@ -26,18 +26,23 @@ function setupSearchBar(props: SearchBarProps = {}) {
 describe('<SearchBar />', () => {
     it('has a search box with no text on initialization', () => {
         const { searchBox } = setupSearchBar();
+
         expect(searchBox).toHaveValue('');
     });
 
     it('has a search box with placeholder', () => {
+        const searchWithPlaceholder = screen.getByPlaceholderText('search.placeholder');
+
         setupSearchBar();
-        expect(screen.getByPlaceholderText('search.placeholder')).toBeInTheDocument();
+
+        expect(searchWithPlaceholder).toBeInTheDocument();
     });
 
     it('populates search box when text typed by the user', () => {
         const { searchBox } = setupSearchBar();
-        expect(searchBox).toHaveValue('');
+
         userEvent.type(searchBox, 'test');
+
         expect(searchBox).toHaveValue('test');
     });
 
@@ -46,6 +51,7 @@ describe('<SearchBar />', () => {
             searchTerm: 'USD'
         };
         const { searchBox } = setupSearchBar(testProps);
+
         expect(searchBox).toHaveValue(testProps.searchTerm);
     });
 
