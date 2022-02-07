@@ -78,7 +78,6 @@ describe('<CurrencyItem/>', () => {
         const { currencyData } = renderCompleteCurrencyItem();
 
         const countryFlagImage: HTMLImageElement = screen.getByRole('img', { name: `${currencyData.nameI18N}` });
-        expect(countryFlagImage).toBeInTheDocument();
 
         // eslint-disable-next-line no-restricted-globals
         expect(countryFlagImage.src).toBe(`${location.origin}/${country}.png`);
