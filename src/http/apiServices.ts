@@ -1,4 +1,4 @@
-import { HttpCurrencyService } from 'http/services/HttpCurrencyService';
-import { AxiosHttpClient } from 'http/clients/AxiosHttpClient';
+import { AxiosCurrencyApi } from 'http/clients/AxiosCurrencyApi';
 
-export const currencyService = HttpCurrencyService(AxiosHttpClient());
+// Replace with client api as required
+export const currencyService = AxiosCurrencyApi();

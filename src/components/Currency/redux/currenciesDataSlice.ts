@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Currency } from 'types/currency';
 import { apiStatus, apiState } from 'types/global';
 import utils from 'utils/currency';
-import {currencyService} from "http/apiServices";
+import { currencyService } from 'http/apiServices';
 
 const SLICE_NAME = 'currenciesData';
 const FETCH_CURRENCIES_THUNK_NAME = `${SLICE_NAME}/fetchCurrencies`;

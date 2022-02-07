@@ -2,18 +2,9 @@ import { server } from 'mocks/mockServer';
 import { currencyHandlerEmpty, currencyHandlerException } from 'mocks/handlers';
 import fxData from 'mocks/data/fx.json';
 
-import { HttpCurrencyService } from 'http/services/HttpCurrencyService';
-import { AxiosHttpClient } from 'http/clients/AxiosHttpClient';
-import { currenciesResponseData } from 'http/currenciesResponse';
+import { currencyService } from 'http/apiServices';
 
-let currencyService: ReturnType<typeof HttpCurrencyService>;
-
-beforeEach(() => {
-    // Inject with client of choice, preferably same as used elsewhere in the app.
-    currencyService = HttpCurrencyService(AxiosHttpClient());
-});
-
-describe('currenciesApi', () => {
+describe('CurrencyApi', () => {
     it('should return fx data when API runs successfully', async () => {
         const response = await currencyService.getCurrenciesData();
 
@@ -36,7 +27,7 @@ describe('currenciesApi', () => {
     it('should return empty fx array when API response doesnt have data', async () => {
         server.use(currencyHandlerEmpty);
 
-        const response: currenciesResponseData = await currencyService.getCurrenciesData();
+        const response = await currencyService.getCurrenciesData();
 
         expect(response.fx).toEqual([]);
     });

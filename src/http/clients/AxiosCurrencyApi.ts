@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { ApiClient } from 'http/ApiClient';
-import { currenciesResponseData } from 'http/currenciesResponse';
+import { CurrencyApi } from 'http/clients/CurrencyApi';
+import { currenciesResponseData } from 'http/clients/CurrencyApi';
 import { GET_CURRENCIES_ENDPOINT } from 'http/endpoints';
 
-export function AxiosHttpClient(): ApiClient {
+export function AxiosCurrencyApi(): CurrencyApi {
     return {
         getCurrenciesData: async (): Promise<currenciesResponseData> => {
             const { data } = await axios.get(GET_CURRENCIES_ENDPOINT);
