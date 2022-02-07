@@ -1,4 +1,4 @@
-import currencyReducer, { currenciesActions, currenciesDataInitialState } from 'components/Currency/redux/currencySlice';
+import currencyReducer, { currenciesActions, currenciesDataInitialState } from 'components/Currency/redux/currenciesDataSlice';
 import fxData from 'mocks/data/fx.json';
 import { Currency } from 'types/currency';
 import utils from 'utils/currency';

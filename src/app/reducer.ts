@@ -1,5 +1,5 @@
 import searchReducer from 'components/SearchBar/searchSlice';
-import currencyReducer from 'components/Currency/redux/currencySlice';
+import currencyReducer from 'components/Currency/redux/currenciesDataSlice';
 
 // Combine all slice reducers here. No need to use combineReducers
 // as RTK does this automatically
