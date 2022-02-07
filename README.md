@@ -6,36 +6,47 @@ This is an app created using CRA that lists exchange rates for major currencies,
 
 Run `nvm use && npm i` to install the required dependencies. Make sure `nvm` is installed.
 If you don't want to use `nvm`, make sure that `node -v` returns a version greater than or equal to that present in the `.nvmrc` file. Then, run `npm i`;
+
 ## Basic Specifications
-- [x] The page has:
-    - [x] 1. A header and 
-    - [x] 2. A search bar at the top.
-- [x] Below the header and the search bar appears a list of all currencies.
-- [x] When the user is scrolling the page, the header scrolls off the page, but the search bar sticks to the top and stays there.
-- [x] Each currency list item contains:    
+
+-   [x] The page has:
+    -   [x] 1. A header and
+    -   [x] 2. A search bar at the top.
+-   [x] Below the header and the search bar appears a list of all currencies.
+-   [x] When the user is scrolling the page, the header scrolls off the page, but the search bar sticks to the top and stays there.
+-   [x] Each currency list item contains:
+
     1. Flag of the country
     1. Name of the country
     1. Currency of the country
     1. Exchange rate of that currency
 
-- [ ] The currencies are searchable. The list updates according to the value in search bar.
-- [ ] The search term is also present in the URL hash, enabling deep linking to be used later.
+-   [x] The currencies are searchable. The list updates according to the value in search bar.
+-   [ ] The search term is also present in the URL hash, enabling deep linking to be used later.
+
+## API Library
+
+Currently, axios is being used. However, it can be replaced by any Rest client.
 
 ## Enhanced Specifications
-- [ ] The App shows a loader while results are loading.
-- [x] If no currencies are available or there were errors while fetching, show appropriate messages.
-- [x] The app uses Redux to manage data.
-- [x] Internationalization support.
-- [ ] The implementation for CurrenciesList should be swappable with choice (e.g. basic table, paginated table)
+
+-   [ ] The App shows a loader while results are loading.
+-   [x] If no currencies are available or there were errors while fetching, show appropriate messages.
+-   [x] The app uses Redux to manage data.
+-   [x] Internationalization support.
+-   [ ] The implementation for CurrenciesList should be swappable with choice (e.g. basic table, paginated table)
+
 ## Directory Structure
 
-* `- app` :The app component and global state management files are located in the root `app/` folder since they are logicallly related.
-* Each component has a dedicated folder for the TSX, CSS and tests for it. I feel this allows easier referencing within files and also makes the components very easy to add/remove, doing so together for all the parts.
+-   `- app` :The app component and global state management files are located in the root `app/` folder since they are logicallly related.
+-   Each component has a dedicated folder for the TSX, CSS and tests for it. I feel this allows easier referencing within files and also makes the components very easy to add/remove, doing so together for all the parts.
 
-> Opinion: I like to keep my types inside of the components for two reasons. 
+> Opinion: I like to keep my types inside of the components for two reasons.
+>
 > 1. Global types (in the arc/types/ folder) should really be global and should be easy for anyone to grasp what those types are from reading the file. Adding all types to global would make it bloated.
 > 1. Having them in the components makes it easy to infer from the import signature about the nature of the types. Types of a type
-> One option to explore is to have the types of each component in a related types file in the component folder to make it possible to replace implementations altogether and make adjustments based on the types.
+>    One option to explore is to have the types of each component in a related types file in the component folder to make it possible to replace implementations altogether and make adjustments based on the types.
+
     ```
     - components
         -- Component
@@ -52,24 +63,26 @@ If you don't want to use `nvm`, make sure that `node -v` returns a version great
                 -- otherTests.ts
     ```
 
-* `- i18n`: I18N files are stored under the i18n directory.
+-   `- i18n`: I18N files are stored under the i18n directory.
 
 ## Commit Message Format
 
 `<Type>: <Area of change/File>: Commit message`
 
 ### Possible values for Type:
-* Feat: Adding new feature to code
-* Fix: Fix existing implementation
-* Test: Adding tests
-* Refactor
-* Style: Changes to code styling only (e.g. spaces, tabs, prettier changes)
-* Docs: Adding docs for anything
-* Chore: Setup/changes in tooling; changes to non-functional files(e.g. readme)
+
+-   Feat: Adding new feature to code
+-   Fix: Fix existing implementation
+-   Test: Adding tests
+-   Refactor
+-   Style: Changes to code styling only (e.g. spaces, tabs, prettier changes)
+-   Docs: Adding docs for anything
+-   Chore: Setup/changes in tooling; changes to non-functional files(e.g. readme)
 
 e.g. "Fix: SearchBox_Test: include name to be specific for search button"
 
 ---
+
 ---
 
 # Getting Started with Create React App

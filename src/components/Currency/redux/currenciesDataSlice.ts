@@ -6,6 +6,9 @@ import utils from 'utils/currency';
 import { CurrencyService } from 'http/services/GetCurrencyService';
 import { AxiosHttpClient } from 'http/clients/AxiosHttpClient';
 
+const SLICE_NAME = 'currenciesData';
+const FETCH_CURRENCIES_THUNK_NAME = `${SLICE_NAME}/fetchCurrencies`;
+
 // Describes the shape of the currencies data slice
 interface currenciesDataState {
     currencies: Currency[];
@@ -25,7 +28,7 @@ export const currenciesDataInitialState: currenciesDataState = {
     }
 };
 
-export const fetchCurrencies = createAsyncThunk('currencies/fetchCurrencies', CurrencyService(AxiosHttpClient()));
+export const fetchCurrencies = createAsyncThunk(FETCH_CURRENCIES_THUNK_NAME, CurrencyService(AxiosHttpClient()));
 
 // Create the currencies data slice
 export const currenciesDataSlice = createSlice({
