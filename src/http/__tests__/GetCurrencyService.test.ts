@@ -17,7 +17,7 @@ describe('currenciesApi', () => {
     it('should return fx data when API runs successfully', async () => {
         const response = await getCurrencies();
 
-        expect(response.fx).toHaveProperty('fx', fxData.fx);
+        expect(response.fx).toEqual(fxData.fx);
     });
     it('should return failure when API returns 500 status', async () => {
         server.use(currencyHandlerException);
