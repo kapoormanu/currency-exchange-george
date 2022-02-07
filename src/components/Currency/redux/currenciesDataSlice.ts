@@ -5,6 +5,9 @@ import { apiStatus, apiState } from 'types/global';
 import utils from 'utils/currency';
 import { getCurrenciesResponse } from 'http/currenciesApi';
 
+const SLICE_NAME = 'currenciesData';
+const FETCH_CURRENCIES_THUNK_NAME = `${SLICE_NAME}/fetchCurrencies`;
+
 // Describes the shape of the currencies data slice
 interface currenciesDataState {
     currencies: Currency[];
@@ -24,7 +27,7 @@ export const currenciesDataInitialState: currenciesDataState = {
     }
 };
 
-export const fetchCurrencies = createAsyncThunk('currencies/fetchCurrencies', getCurrenciesResponse());
+export const fetchCurrencies = createAsyncThunk(FETCH_CURRENCIES_THUNK_NAME, getCurrenciesResponse());
 
 // Create the currencies data slice
 export const currenciesDataSlice = createSlice({
