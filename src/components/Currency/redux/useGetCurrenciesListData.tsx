@@ -36,5 +36,5 @@ export const useGetCurrenciesListData = () => {
         dispatch(currenciesActions.updateFilteredCurrencies(searchField));
     }, [searchField, dispatch]);
 
-    return { currencyItems, loadingStatus, filteredCurrencies };
+    return { currencyItems, loadingStatus, filteredCurrencies, baseCurrency };
 };
