@@ -5,11 +5,14 @@ import { SearchBarProps } from 'components/SearchBar/SearchBar';
 import { useAppDispatch, useAppSelector } from 'app/redux/hooks';
 import { searchSelector } from 'components/SearchBar/redux/searchBarSelectors';
 import { searchActions } from './searchSlice';
-
+import { useTranslation } from 'react-i18next';
 export const useManageSearchBarData = (props: SearchBarProps) => {
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
     const { searchField } = useAppSelector(searchSelector);
-
+    const placeholderText = t('search.placeholder');
+    const searchFieldLabel = t('search.label');
+    const searchFieldName = 'searchField';
     /*
     Sets the value on load (if provided).
     Need to add a dependency array to run it only once.
@@ -31,5 +34,5 @@ export const useManageSearchBarData = (props: SearchBarProps) => {
         const { value } = e.target;
         dispatch(searchActions.setSearch(value));
     };
-    return { handleSearchFieldChange, searchField };
+    return { handleSearchFieldChange, searchField, placeholderText, searchFieldLabel, searchFieldName };
 };

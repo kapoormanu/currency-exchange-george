@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 
-import { Trans } from 'react-i18next';
 import styles from 'components/SearchBar/SearchBar.module.css';
 import { useManageSearchBarData } from 'components/SearchBar/redux/useManageSearchBarData';
+import Input from 'components/UI/Input/Input';
 
 export type SearchBarProps = {
     searchTerm?: string;
@@ -19,22 +18,19 @@ export type SearchBarProps = {
  * @returns {JSX.Element} a JSX element composing the SearchBar
  */
 function SearchBar(props: SearchBarProps) {
-    /* eslint-disable-next-line testing-library/render-result-naming-convention */
-    const placeholderText = ReactDOMServer.renderToString(<Trans>search.placeholder</Trans>);
-    const { handleSearchFieldChange, searchField } = useManageSearchBarData(props);
+    const { handleSearchFieldChange, searchField, searchFieldLabel, placeholderText, searchFieldName } =
+        useManageSearchBarData(props);
 
     return (
         <div className={styles.searchBar}>
-            <label htmlFor='searchField'>
-                <Trans>search.label</Trans>
-            </label>
-            <input
+            <Input
                 type='search'
-                name='searchField'
-                id='searchField'
-                value={searchField}
+                name={searchFieldName}
+                id={searchFieldName}
+                label={searchFieldLabel}
                 placeholder={placeholderText}
                 onChange={handleSearchFieldChange}
+                value={searchField}
             />
         </div>
     );
