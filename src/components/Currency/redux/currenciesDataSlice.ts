@@ -33,10 +33,7 @@ export const currenciesDataSlice = createSlice({
                 state.currencies = fx;
                 state.filteredCurrencies = fx;
             })
-            .addCase(fetchCurrencies.rejected, (state, action) => {
-                state.status.state = apiState.FAILURE;
-                state.status.error = action.error.message || 'Unkown Server Error';
-            });
+            .addCase(fetchCurrencies.rejected, onFetchCurrenciesFailure);
     }
 });
 
