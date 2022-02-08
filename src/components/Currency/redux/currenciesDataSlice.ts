@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { currenciesDataInitialState } from 'types/currency';
-import { apiState } from 'types/global';
 import {
+    onFetchCurrenciesFailure,
     onFetchCurrenciesPending,
+    onFetchCurrenciesSuccess,
     updateFilteredCurrenciesReducer
 } from 'components/Currency/redux/currenciesReducers';
 
-import utils from 'utils/currency';
 import { currencyService } from 'http/apiServices';
 
 const SLICE_NAME = 'currenciesData';
@@ -25,14 +25,7 @@ export const currenciesDataSlice = createSlice({
     extraReducers(builder) {
         builder
             .addCase(fetchCurrencies.pending, onFetchCurrenciesPending)
-            .addCase(fetchCurrencies.fulfilled, (state, action) => {
-                state.status.state = apiState.SUCCESS;
-                // Stringify data and then set state variables
-                const { baseCurrency, fx } = utils.transformJSONToAllStrings(action.payload);
-                state.baseCurrency = baseCurrency;
-                state.currencies = fx;
-                state.filteredCurrencies = fx;
-            })
+            .addCase(fetchCurrencies.fulfilled, onFetchCurrenciesSuccess)
             .addCase(fetchCurrencies.rejected, onFetchCurrenciesFailure);
     }
 });

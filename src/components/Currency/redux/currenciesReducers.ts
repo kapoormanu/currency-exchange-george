@@ -3,8 +3,20 @@ import { PayloadAction } from '@reduxjs/toolkit/dist/createAction';
 import { SerializedError } from '@reduxjs/toolkit/dist/createAsyncThunk';
 
 import { currenciesDataState } from 'types/currency';
+import { currenciesResponseData } from 'http/clients/CurrencyApi';
 import { apiState } from 'types/global';
 import utils from 'utils/currency';
+
+type actionTypeSuccess = PayloadAction<
+    currenciesResponseData,
+    string,
+    {
+        arg: void;
+        requestId: string;
+        requestStatus: 'fulfilled';
+    },
+    never
+>;
 
 type actionTypeFailure = PayloadAction<
     unknown,
