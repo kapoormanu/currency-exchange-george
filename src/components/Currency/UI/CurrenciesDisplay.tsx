@@ -31,9 +31,11 @@ const CurrenciesDisplay = (props: CurrenciesDisplayProps) => {
                     <tbody>
                         {props.filteredCurrencies.length > 0 && props.currencyItems}
                         {props.filteredCurrencies.length === 0 && (
-                            <div role='alert' className='fade alert alert-danger show'>
-                                No currencies available.
-                            </div>
+                            <tr>
+                                <td colSpan={5} role='alert' className='fade alert alert-danger show'>
+                                    No currencies available.
+                                </td>
+                            </tr>
                         )}
                     </tbody>
                 </table>

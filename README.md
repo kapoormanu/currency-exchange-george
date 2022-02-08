@@ -24,10 +24,6 @@ If you don't want to use `nvm`, make sure that `node -v` returns a version great
 -   [x] The currencies are searchable. The list updates according to the value in search bar.
 -   [ ] The search term is also present in the URL hash, enabling deep linking to be used later.
 
-## API Library
-
-Currently, axios is being used. However, it can be replaced by any Rest client.
-
 ## Enhanced Specifications
 
 -   [ ] The App shows a loader while results are loading.
@@ -35,8 +31,12 @@ Currently, axios is being used. However, it can be replaced by any Rest client.
 -   [x] The app uses Redux to manage data.
 -   [x] Internationalization support.
 -   [ ] The implementation for CurrenciesList should be swappable with choice (e.g. basic table, paginated table)
+-   [ ] Debounce search functionality to improve performance.
+-   [ ] Integrate pre-commit hook for linting(using e.g. husky)
 
-## Directory Structure
+## API Library
+
+Currently, axios is being used. However, it can be replaced by any Rest client.## Directory Structure
 
 -   `- app` :The app component and global state management files are located in the root `app/` folder since they are logicallly related.
 -   Each component has a dedicated folder for the TSX, CSS and tests for it. I feel this allows easier referencing within files and also makes the components very easy to add/remove, doing so together for all the parts.
