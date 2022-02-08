@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/redux/hooks';
 import { apiState } from 'types/global';
 
 import CurrencyItem from 'components/Currency/CurrencyItem';
