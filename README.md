@@ -29,7 +29,8 @@ If you don't want to use `nvm`, make sure that `node -v` returns a version great
 -   [ ] The App shows a loader while results are loading.
 -   [x] If no currencies are available or there were errors while fetching, show appropriate messages.
 -   [x] The app uses Redux to manage data.
--   [x] Internationalization support.
+-   [x] Internationalization support. (partially implemented right now. ) Use `http://localhost:3000/?lng=<locale>`. Currently support en and de. Anything else fallsback to en.
+    e.g. http://localhost:3000/?lng=de-AT
 -   [ ] The implementation for CurrenciesList should be swappable with choice (e.g. basic table, paginated table)
 -   [ ] Debounce search functionality to improve performance.
 -   [ ] Integrate pre-commit hook for linting(using e.g. husky)
