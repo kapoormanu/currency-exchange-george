@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CurrencyItem from 'components/Currency/CurrencyItem';
+import CurrencyItem from 'components/Currency/UI/CurrencyItem';
 import { render, screen } from '@testing-library/react';
 import fxData from 'mocks/data/fx.json';
 import utils from 'utils/currency';

@@ -9,7 +9,7 @@ import {
     getFilteredCurrencies,
     getLoadingStatus
 } from 'components/Currency/redux/currenciesDataSelector';
-import CurrencyItem from 'components/Currency/CurrencyItem';
+import CurrencyItem from 'components/Currency/UI/CurrencyItem';
 import { apiState } from 'types/global';
 
 export const useGetCurrenciesListData = () => {
