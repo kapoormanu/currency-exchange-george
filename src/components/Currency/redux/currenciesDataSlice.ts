@@ -1,31 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Currency } from 'types/currency';
-import { apiStatus, apiState } from 'types/global';
+import { currenciesDataInitialState, currenciesDataState } from 'types/currency';
+import { apiState } from 'types/global';
 import utils from 'utils/currency';
 import { currencyService } from 'http/apiServices';
 
 const SLICE_NAME = 'currenciesData';
 const FETCH_CURRENCIES_THUNK_NAME = `${SLICE_NAME}/fetchCurrencies`;
-
-// Describes the shape of the currencies data slice
-interface currenciesDataState {
-    currencies: Currency[];
-    filteredCurrencies: Currency[];
-    baseCurrency: string;
-    status: apiStatus;
-}
-
-//Provide initial state
-export const currenciesDataInitialState: currenciesDataState = {
-    currencies: [],
-    filteredCurrencies: [],
-    baseCurrency: '',
-    status: {
-        state: apiState.PRISTINE,
-        error: null
-    }
-};
 
 export const fetchCurrencies = createAsyncThunk(FETCH_CURRENCIES_THUNK_NAME, currencyService.getCurrenciesData);
 // Create the currencies data slice
