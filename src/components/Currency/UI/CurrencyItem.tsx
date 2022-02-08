@@ -1,6 +1,8 @@
 import React from 'react';
 import { Currency } from 'types/currency';
 import utils from 'utils/currency';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
 
 type CurrencyItemProps = {
     currencyData: Currency;
@@ -25,28 +27,28 @@ function CurrencyItem({ currencyData, baseCurrency }: CurrencyItemProps) {
     const imgUrl = utils.getImgUrlForCountry(country);
 
     return (
-        <tr>
-            <td headers='flag'>
+        <TableRow key={currencyData.currency}>
+            <TableCell headers='flag'>
                 <img src={imgUrl} alt={currencyData.nameI18N || country} />
-            </td>
+            </TableCell>
 
-            <td headers='currency'>{currencyData?.currency}</td>
-            <td headers='country'>{currencyData?.nameI18N || 'N/A'}</td>
-            <td headers='buy'>
+            <TableCell headers='currency'>{currencyData?.currency}</TableCell>
+            <TableCell headers='country'>{currencyData?.nameI18N || 'N/A'}</TableCell>
+            <TableCell headers='buy'>
                 {utils.getFormattedExchangeRate(
                     currencyData.exchangeRate?.buy || '',
                     baseCurrency,
                     currencyData.precision
                 )}
-            </td>
-            <td headers='sell'>
+            </TableCell>
+            <TableCell headers='sell'>
                 {utils.getFormattedExchangeRate(
                     currencyData.exchangeRate?.sell || '',
                     baseCurrency,
                     currencyData.precision
                 )}
-            </td>
-        </tr>
+            </TableCell>
+        </TableRow>
     );
 }
 
