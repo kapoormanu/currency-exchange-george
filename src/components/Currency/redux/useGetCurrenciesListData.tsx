@@ -29,12 +29,10 @@ export const useGetCurrenciesListData = () => {
     useEffect(() => {
         if (loadingStatus === apiState.PRISTINE) {
             dispatch(fetchCurrencies());
+        } else {
+            dispatch(currenciesActions.updateFilteredCurrencies(searchField));
         }
-    }, [loadingStatus, dispatch]);
-
-    useEffect(() => {
-        dispatch(currenciesActions.updateFilteredCurrencies(searchField));
-    }, [searchField, dispatch]);
+    }, [loadingStatus, dispatch, searchField]);
 
     return { currencyItems, loadingStatus, filteredCurrencies, baseCurrency };
 };
