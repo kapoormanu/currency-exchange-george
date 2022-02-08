@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from 'components/SearchBar/SearchBar.module.css';
+import styles from 'components/SearchBar/SearchBar.module.scss';
 import { useManageSearchBarData } from 'components/SearchBar/redux/useManageSearchBarData';
 import Input from 'components/UI/Input/Input';
 

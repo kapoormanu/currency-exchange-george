@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from 'test-utils/testUtils';
+import { render, screen, waitFor, within } from 'test-utils/testUtils';
 
 import fxData from 'mocks/data/fx.json';
 
@@ -29,7 +29,9 @@ const renderCurrencyList = async () => {
 describe('<CurrenciesList/>', () => {
     it('should load all the countries from API', async () => {
         await renderCurrencyList();
-        expect(screen.getAllByRole('row')).toHaveLength(fxData.fx.length + 1); // plus one for the header
+        const currencyList = screen.getByRole('table', { name: 'Currency List' });
+
+        expect(within(currencyList).getAllByRole('row')).toHaveLength(fxData.fx.length + 2); // plus one each for the header/footer
     });
 
     it('should load flags for all countries including placeholders for missing flags', async () => {

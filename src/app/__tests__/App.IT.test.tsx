@@ -1,4 +1,4 @@
-import { render, screen, within } from 'test-utils/testUtils';
+import { render, screen, waitFor, within } from 'test-utils/testUtils';
 import userEvent from '@testing-library/user-event';
 
 import App from 'app/App';
@@ -10,14 +10,19 @@ import App from 'app/App';
  * Reusable helper function to render the component and optionally
  * perform functions common to the tests using it
  */
-function setupApp() {
+async function setupApp() {
     render(<App />);
+    await waitFor(() => {
+        const LOADING_CURRENCIES_TEXT = 'Loading Currencies...';
+        // hide message when SUCCESS/api failure
+        expect(screen.queryByText(LOADING_CURRENCIES_TEXT)).not.toBeInTheDocument();
+    });
 }
 
 describe('CurrencyList filtering using SearchBar', () => {
     it('should show only results matching the search item', async () => {
         const searchTerm = 'me';
-        setupApp();
+        await setupApp();
         const currencyList = await screen.findByRole('table', { name: 'Currency List' });
         const searchBox = screen.getByRole('searchbox');
 
