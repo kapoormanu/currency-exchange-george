@@ -19,8 +19,11 @@ type TableComposerProps = {
     loadingFailure?: boolean;
 };
 export const TableComposer = ({ headers, rows, baseCurrency, loadingFailure }: TableComposerProps) => {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(-1);
+    const INITIAL_PAGE = 0;
+    const ALL_ROWS = -1;
+
+    const [page, setPage] = React.useState(INITIAL_PAGE); // Set initial page to zero
+    const [rowsPerPage, setRowsPerPage] = React.useState(ALL_ROWS);
 
     const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         setPage(newPage);
