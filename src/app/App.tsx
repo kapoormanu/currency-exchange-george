@@ -6,10 +6,11 @@ import SearchBar from 'components/SearchBar/SearchBar';
 import CurrenciesList from 'components/Currency/CurrenciesList';
 
 function App() {
+    const searchParams = new URLSearchParams(window.location.search);
     return (
         <>
             <Header />
-            <SearchBar />
+            <SearchBar searchTerm={searchParams.get('search') || ''} />
             <CurrenciesList />
         </>
     );
