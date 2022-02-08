@@ -1,9 +1,8 @@
-import { useAppSelector } from 'app/redux/hooks';
 import React from 'react';
 import { Currency } from 'types/currency';
 import { apiState } from 'types/global';
-import { getBaseCurrency } from '../redux/currenciesDataSelector';
 import { TableComposer } from './TableComposer';
+import styles from 'components/Currency/UI/currency.module.scss';
 
 type CurrenciesDisplayProps = {
     loadingStatus: apiState;
@@ -15,7 +14,7 @@ const CurrenciesDisplay = (props: CurrenciesDisplayProps) => {
     const tableHeaders = ['Flag', 'Currency', 'Country', 'Buy', 'Sell'];
     return (
         <>
-            {props.loadingStatus === apiState.LOADING && <div>Loading Currencies...</div>}
+            {props.loadingStatus === apiState.LOADING && <div className={styles.loading}>Loading Currencies...</div>}
             {props.loadingStatus === apiState.FAILURE && (
                 <div role='alert' className='fade alert alert-danger show'>
                     Oops. There was an Error fetching currencies.
