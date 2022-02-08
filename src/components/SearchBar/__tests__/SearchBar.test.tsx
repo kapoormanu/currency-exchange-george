@@ -9,7 +9,7 @@ import SearchBar, { SearchBarProps } from 'components/SearchBar/SearchBar';
  *
  * Reusable helper function to render the component and optionally
  * perform functions common to the tests using it.
- * Renders the SearchBar component and the element refering to the searchbox..
+ * Renders the SearchBar component and the element referring to the searchbox..
  * @param {SearchBarProps} props props to send to the component
  *
  * @returns {Object} returns `utils` returned from render and a ref to the rendered searchbox.
@@ -31,10 +31,9 @@ describe('<SearchBar />', () => {
     });
 
     it('has a search box with placeholder', () => {
-        const searchWithPlaceholder = screen.getByPlaceholderText('search.placeholder');
-
         setupSearchBar();
 
+        const searchWithPlaceholder = screen.getByPlaceholderText('search.placeholder');
         expect(searchWithPlaceholder).toBeInTheDocument();
     });
 
@@ -50,8 +49,8 @@ describe('<SearchBar />', () => {
         const testProps = {
             searchTerm: 'USD'
         };
-        const { searchBox } = setupSearchBar(testProps);
 
+        const { searchBox } = setupSearchBar(testProps);
         expect(searchBox).toHaveValue(testProps.searchTerm);
     });
 
