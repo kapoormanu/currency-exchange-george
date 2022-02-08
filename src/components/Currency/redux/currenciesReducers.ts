@@ -48,8 +48,17 @@ export const updateFilteredCurrenciesReducer = (state: currenciesDataState, acti
     }
 };
 
-export const onFetchCurrenciesPending = function (state: WritableDraft<currenciesDataState>) {
+export const onFetchCurrenciesPending = (state: WritableDraft<currenciesDataState>) => {
     state.status.state = apiState.LOADING;
+};
+
+export const onFetchCurrenciesSuccess = (state: WritableDraft<currenciesDataState>, action: actionTypeSuccess) => {
+    state.status.state = apiState.SUCCESS;
+    // Stringify data and then set state variables
+    const { baseCurrency, fx } = utils.transformJSONToAllStrings(action.payload);
+    state.baseCurrency = baseCurrency;
+    state.currencies = fx;
+    state.filteredCurrencies = fx;
 };
 export const onFetchCurrenciesFailure = (state: WritableDraft<currenciesDataState>, action: actionTypeFailure) => {
     state.status.state = apiState.FAILURE;
